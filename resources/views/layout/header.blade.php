@@ -5,7 +5,7 @@
             </div><!--/ Top bar left end -->
 
             <div class="col-md-4 top-social text-lg-right text-md-center">
-                <ul class="unstyled">
+                <!-- <ul class="unstyled">
                     <li>
                         <button class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm">
                             Đăng ký
@@ -15,7 +15,18 @@
                         </button>
 
                     </li>
-                </ul><!-- Ul end -->
+                </ul> -->
+                <ul class="login">
+					@if(Auth::check())
+						<li><a href="">Chào bạn {{Auth::user()->name}}</a></li>
+						<li><a href="{{route('logout')}}">Đăng xuất</a></li>
+					@else
+						<li><a href="{{route('register')}}">Đăng kí</a></li>
+						<li><a href="{{route('login')}}">Đăng nhập</a></li>
+					@endif
+
+					</ul>
+
             </div><!--/ Top social col end -->
         </div><!--/ Content row end -->
     </div><!--/ Container end -->
@@ -67,18 +78,21 @@
 
                             @foreach($menus as $key => $menu)
                                 <li class="dropdown">
-                                    <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                    <a href="{{ str_slug($key) }}" class="nav-link dropdown-toggle" data-toggle="dropdown"
                                        role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ $key }}
                                         <i class="fa fa-angle-down"></i>
                                     </a>
-                                    <ul class="dropdown-menu" role="menu">
-                                        @foreach($menu as $mn)
-                                            <li class="dropdown-submenu">
-                                                <a href="">{{$mn}}</a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
+                                    @if ($menu)
+                                        <ul class="dropdown-menu" role="menu">
+                                            @foreach($menu as $mn)
+                                                <li class="dropdown-submenu">
+                                                    {{-- <a href="{{ route('news.get.by.category', str_slug($mn)) }}">{{$mn}}</a>--}}
+                                                    <a href="{{ route('news.get.by.category', ['catParent' => str_slug($key), 'catChild' => str_slug($mn)]) }}">{{$mn}}</a>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    @endif
 
                                 </li>
                         @endforeach

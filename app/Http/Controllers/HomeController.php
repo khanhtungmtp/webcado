@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Category;
 use App\Models\News;
-use App\Models\Comment;
 class HomeController extends Controller
 {
     /**
@@ -13,10 +11,10 @@ class HomeController extends Controller
      *
      * @return void
      */
-    public function __construct()
-    {
-        // $this->middleware('auth');
-    }
+//    public function __construct()
+//    {
+//        $this->middleware('auth');
+//    }
 
     /**
      * Show the application dashboard.
@@ -27,9 +25,9 @@ class HomeController extends Controller
     {
         return view('client.page.trangchu');
     }
+
     public function detail($id)
     {
-
         $new = News::where('new_id',$id)->first();
         $same_news = News::where('cat_id',$new->cat_id)->paginate(3);
         $new_k = News::Orderby('new_view','desc')->paginate(3);
@@ -40,20 +38,11 @@ class HomeController extends Controller
         return view('client.page.category');
     }
     public function postComment(Request $req){
-
-       $comment = new Comment;
-
-    $comment->user_id =1;
-       $comment->comment_author_email = $req->comment_author_email;
-
-
-       $comment->comment_content = $req->comments_content ;
-
-       $comment->save();
+        $comment = new Comment;
+        $comment->user_id =1;
+        $comment->comment_author_email = $req->comment_author_email;
+        $comment->comment_content = $req->comments_content ;
+        $comment->save();
         return redirect()->back();
-
-   }
-
-
-
+    }
 }

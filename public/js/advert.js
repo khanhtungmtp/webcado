@@ -13,7 +13,7 @@ $(document).ready(function() {
 		$("#idecode").val($(this).attr('code'));
 		$("#ennimguserold").val($(this).attr('imgo'));
 		$("#ennavatarfile").val("");
-		$("#ennavatar").attr('src',"../../public/img/images_bn/"+$(this).attr('imgo'));
+		$("#ennavatar").attr('src',"img/uploads/images_bn/"+$(this).attr('imgo'));
 		$('.nn-modal-edit-advert').modal('show');
 	});
 	$(".nndeditlistpro").click(function(){

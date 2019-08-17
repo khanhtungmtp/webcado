@@ -11,6 +11,12 @@
 |
 */
 Route::get('/', 'HomeController@index')->name('home');
+Route::get('register', 'ClientLoginController@getRegister')->name('getRegister');
+Route::post('postRegister', 'ClientLoginController@postRegister')->name('postRegister');
+Route::get('login', 'ClientLoginController@getLogin')->name('getLogin');
+Route::post('postLogin', 'ClientLoginController@postLogin')->name('postLogin');
+Route::get('logout', 'ClientLoginController@postLogout')->name('postLogout');
+Route::get('/{catParent}/{catChild}', 'NewByCategoryController@index')->name('news.get.by.category');
 Route::get('chi-tiet-bai-viet/{id}', 'HomeController@detail')->name('detail');
 Route::post('comment', 'HomeController@postComment')->name('comment');
 Route::get('danh-muc', 'HomeController@category')->name('category');
@@ -63,10 +69,10 @@ Route::group(['prefix'=>'admin', 'middleware' => 'AdminAccess'],function ()
 
     Route::group(['prefix' => 'advert'], function ()
     {
-      Route::get('list','AdvertController@ListAdvert')->name('admin.get.list.advert');
-      Route::post('list','AdvertController@AddAdvert');
-      Route::post('list/edit','AdvertController@EditAdvert');
-      Route::post('list/delete','AdvertController@DeleteAdvert');
+      Route::get('/list','AdvertController@ListAdvert')->name('admin.get.list.advert');
+      Route::post('/list','AdvertController@AddAdvert')->name('admin.post.add.advert');
+      Route::post('/list/edit','AdvertController@EditAdvert')->name('admin.post.edit.advert');
+      Route::post('/list/delete','AdvertController@DeleteAdvert')->name('admin.post.delete.advert');
     });
 
 

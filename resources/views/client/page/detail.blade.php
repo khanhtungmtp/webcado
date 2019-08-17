@@ -126,7 +126,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Comments end -->
+                            Comments end -->
                             <ul class="comments-reply">
                                 <li>
                                     <div class="comment">
@@ -163,7 +163,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <!-- Comments end -->
+                            <!-- Comments end
                         </li>
                         <!-- Comments-list li end -->
                     </ul>

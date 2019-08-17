@@ -4,24 +4,11 @@
 @endsection
 @section('style')
     <style>
-        .active {
-            color: #ff9727!important;
-        }
-        .modal-full {
-            min-width: 96%;
-            margin: 0 auto;
-        }
-
-        .modal-full .modal-content {
-            min-height: 100vh;
-        }
-
-        td {
-            border:1px solid #8080801f;
-            width:200px;
-            height:200px;
-            word-wrap:break-word;
-        }
+    .col-sm-9 {
+        flex: 0 0 75%;
+        max-width: 75%;
+        float: right;
+    }
     </style>
 @endsection
 @section('breadcrumb')
@@ -40,7 +27,7 @@
 
 @section('admin.content')
 <div id="page-wrapper">
-<div class="row">
+  <div class="row">
 
   </div>
   <!-- /.row -->
@@ -84,9 +71,9 @@
                               </td>
                               <td class="text-center">
                                   @if($advert->hide ==1)
-                                      <span class="glyphicon glyphicon-remove" style="color: red;"></span>
+                                      <span class="glyphicon glyphicon-remove" style="color: red;">Khong hien thi</span>
                                   @else
-                                       <i class="glyphicon glyphicon-ok" style="color:green;"></i>
+                                       <i class="glyphicon glyphicon-ok" style="color:green;">Hien thi</i>
                                   @endif
                               </td>
                               <td class="center">
@@ -94,7 +81,7 @@
                               </td>
                               <td>
                                   <i class="nneditadvert btn btn-info fa fa-edit" id="ennadvert{{ $advert->id }}" editid="{{ $advert->id }}"  hide="{{ $advert->hide }}" area="{{ $advert->area }}"  link="{{ $advert->link }}" code="{{$advert->code}}" sort="{{$advert->sort}}" imgo="{{ $advert->img }}"> Sửa</i>
-                                  <i class="nndeditlistpro btn btn-danger fa fa-trash"  editid="{{ $advert->id }}" imgo="{{ $advert->img }}" title="{{ $advert->id }}" > Xóa</i>
+                                  <i class="nndeditlistpro btn btn-danger far fa-trash-alt"  editid="{{ $advert->id }}" imgo="{{ $advert->img }}" title="{{ $advert->id }}" > Xóa</i>
                               </td>
                           </tr>
                           @endforeach
@@ -111,171 +98,81 @@
   <!-- /.row -->
 </div>
 <!-- model -->
-
-<div class="modal fade nn-modal-add-advert" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog " role="document">
+<!-- model them quang cao -->
+<div class="modal fade nn-modal-add-advert" id="myModal">
+    <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Modal Header -->
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Quảng cáo</h4>
+          <h4 class="modal-title">Quảng cáo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <form class="form-horizontal" method="post" action="list" enctype="multipart/form-data">
-        <input type="hidden" name="_token" value="{{ csrf_token()}}" />
-        <div class="modal-body">
-          <div class="row">
-              @if(count($errors)>0)
-                  <div class="alert-tb alert alert-danger">
-                      @foreach($errors->all() as $err)
-                        <i class="fa fa-exclamation-circle"></i> {{ $err }}<br/>
-                      @endforeach
-                  </div>
-              @endif
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="nnchar" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Hiện thị:</label>
-                      <div class="col-sm-9">
-                          <label class="radio-inline">
-                              <input type="radio" name="nnhide" id="nn-hide-1" value="1" > Ẩn
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="nnhide" id="nn-hide-2" value="2" checked> Hiện
-                          </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnchar" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Khu vực:</label>
-                      <div class="col-sm-9">
-                          <label class="radio-inline">
-                              <input type="radio" name="nnshowin" id="nn-show-1" value="1" > Đầu trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="nnshowin" id="nn-show-2" value="2" checked> Giữa trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="nnshowin" id="nn-show-3" value="3"> Cuối trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="nnshowin" id="nn-show-4" value="4"> Trang chủ
-                          </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Thứ tự:</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" name="sort" id="idsort" placeholder="Nhấp số thứ tự xắp xếp">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Link:</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" name="nnlink" id="nnlink" placeholder="link bài viết quảng cáo">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Code :</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control" name="code" id="idcode" rows="4"></textarea>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnavatar" class="col-sm-3 control-label"><i class="fa  fa-picture-o"></i> Hình ảnh</label>
-                      <div class="col-sm-9">
-                          <img id="nnavatar" src="http://shopproject30.com/wp-content/themes/venera/images/placeholder-camera-green.png" alt="..." class="img-thumbnail" style="width: 50%;">
-                          <input type="file" name="nnavatarfile" id="nnavatarfile" onchange="showimg(this);">
-                      </div>
-                  </div>
+        <!-- Modal body -->
+        <form class="form-horizontal" action="{{route('admin.post.add.advert')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="nnchar" class="col-sm-3 control-label"><i class="fab fa-free-code-camp"></i> Hiện thị:</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="nnhide" id="nn-hide-1" value="1" > Ẩn
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nnhide" id="nn-hide-2" value="2" checked> Hiện
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nnchar" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Khu vực:</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="nnshowin" id="nn-show-1" value="1" > Đầu trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nnshowin" id="nn-show-2" value="2" checked> Giữa trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nnshowin" id="nn-show-3" value="3"> Cuối trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="nnshowin" id="nn-show-4" value="4"> Trang chủ
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nnlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Thứ tự:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="sort" id="idesort" placeholder="Nhấp số thứ tự xắp xếp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ennlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Link:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="nnlink" id="nnlink" placeholder="link bài viết quảng cáo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nnlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Code :</label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control" name="code" id="idcode" rows="4"></textarea>
+                        </div>
+                    </div>
 
-              </div>
+                    <div class="form-group">
+                            <label for="nnavatar" class="col-sm-4 control-label"><i class="fas fa-image"></i> Hình ảnh</label>
+                            <div class="col-sm-8">
+                                <img id="nnavatar" src="" alt="..." class="img-thumbnail" style="width: 50%;">
+                                <input type="file" name="ennavatarfile" id="ennavatarfile" onchange="eshowimg(this);" style="display: none">
+                                <input type="hidden" name="nnavatarfile" id="nnavatarfile">
+                            </div>
+                        </div>
+
+                </div>
+            </div>
           </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng cửa sổ</button>
-          <button type="submit" class="btn btn-primary">Tạo mới</button>
-        </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</div>
-  <!-- end modal -->
-
-<div class="modal fade nn-modal-edit-advert" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog " role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Quảng cáo</h4>
-        </div>
-        <form class="form-horizontal" method="post" action="list/edit" enctype="multipart/form-data">
-        <input type="hidden" name="_token" value="{{ csrf_token()}}" />
-        <input type="hidden" name="ennidadvert" id="ennidadvert" />
-        <div class="modal-body">
-          <div class="row">
-              @if(count($errors)>0)
-                  <div class="alert-tb alert alert-danger">
-                      @foreach($errors->all() as $err)
-                        <i class="fa fa-exclamation-circle"></i> {{ $err }}<br/>
-                      @endforeach
-                  </div>
-              @endif
-              <div class="col-xs-12">
-                  <div class="form-group">
-                      <label for="ennhide" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Hiện thị:</label>
-                      <div class="col-sm-9">
-                          <label class="radio-inline">
-                              <input type="radio" name="ennhide" id="nn-hide-1" value="1" > Ẩn
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="ennhide" id="nn-hide-2" value="2"> Hiện
-                          </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="ennshowin" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Khu vực:</label>
-                      <div class="col-sm-9">
-                          <label class="radio-inline">
-                              <input type="radio" name="ennshowin" id="nn-show-1" value="1" > Đầu trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="ennshowin" id="nn-show-2" value="2"> Giữa trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="ennshowin" id="nn-show-3" value="3"> Cuối trang
-                          </label>
-                          <label class="radio-inline">
-                              <input type="radio" name="ennshowin" id="nn-show-4" value="4"> Trang chủ
-                          </label>
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Thứ tự:</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" name="esort" id="idesort" placeholder="Nhấp số thứ tự xắp xếp">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="ennlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Link:</label>
-                      <div class="col-sm-9">
-                        <input type="text" class="form-control" name="ennlink" id="ennlink" placeholder="link bài viết quảng cáo">
-                      </div>
-                  </div>
-                  <div class="form-group">
-                      <label for="nnlink" class="col-sm-3 control-label"><i class="fa  fa-free-code-camp"></i> Code :</label>
-                      <div class="col-sm-9">
-                        <textarea class="form-control" name="ecode" id="idecode" rows="4"></textarea>
-                      </div>
-                  </div>
-
-                  <div class="form-group">
-                          <label for="ennavatar" class="col-sm-4 control-label"><i class="fa  fa-picture-o"></i> Hình ảnh</label>
-                          <div class="col-sm-8">
-                              <img id="ennavatar" src="http://shopproject30.com/wp-content/themes/venera/images/placeholder-camera-green.png" alt="..." class="img-thumbnail" style="width: 50%;">
-                              <input type="file" name="ennavatarfile" id="ennavatarfile" onchange="eshowimg(this);" style="display: none">
-                              <input type="hidden" name="ennimguserold" id="ennimguserold">
-                          </div>
-                      </div>
-
-              </div>
-          </div>
+        <!-- Modal footer -->
         <div class="modal-footer">
           <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng cửa sổ</button>
           <button type="submit" class="btn btn-primary">Cập nhật</button>
@@ -284,35 +181,135 @@
       </div>
     </div>
   </div>
-</div>
+
   <!-- end modal -->
 
   <!-- end modal -->
-<div class="modal fade nn-modal-delete-listpro" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel">
-  <div class="modal-dialog" role="document">
+<!-- end model -->
+
+<!-- model sua quang cao -->
+<div class="modal fade nn-modal-edit-advert"  id="myModal">
+    <div class="modal-dialog">
       <div class="modal-content">
+        <!-- Modal Header -->
         <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title" id="myModalLabel">Xóa Quảng Cáo</h4>
+          <h4 class="modal-title">Quảng cáo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
-        <form class="form-horizontal" method="post" action="list/delete" enctype="multipart/form-data">
-        <input type="hidden" name="dennidlistpro" id="dennidlistpro" />
-        <input type="hidden" name="dennimglistpro" id="dennimglistpro" />
-        <input type="hidden" name="_token" value="{{ csrf_token()}}" />
-        <div class="modal-body">
-          <div class="row">
-              <h4 class="nnbodydelete">Bạn có chắc xóa Quảng Cáo <i id="deletename"></i></h4>
+        <!-- Modal body -->
+        <form class="form-horizontal" action="{{route('admin.post.edit.advert')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="ennidadvert" id="ennidadvert" />
+          <div class="modal-body">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="ennhide" class="col-sm-3 control-label"><i class="fab fa-free-code-camp"></i> Hiện thị:</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="ennhide" id="nn-hide-1" value="1" > Ẩn
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ennhide" id="nn-hide-2" value="2"> Hiện
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ennshowin" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Khu vực:</label>
+                        <div class="col-sm-9">
+                            <label class="radio-inline">
+                                <input type="radio" name="ennshowin" id="nn-show-1" value="1" > Đầu trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ennshowin" id="nn-show-2" value="2"> Giữa trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ennshowin" id="nn-show-3" value="3"> Cuối trang
+                            </label>
+                            <label class="radio-inline">
+                                <input type="radio" name="ennshowin" id="nn-show-4" value="4"> Trang chủ
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nnlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Thứ tự:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="esort" id="idesort" placeholder="Nhấp số thứ tự xắp xếp">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="ennlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Link:</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="ennlink" id="ennlink" placeholder="link bài viết quảng cáo">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="nnlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Code :</label>
+                        <div class="col-sm-9">
+                          <textarea class="form-control" name="ecode" id="idecode" rows="4"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                            <label for="ennavatar" class="col-sm-4 control-label"><i class="fas fa-image"></i> Hình ảnh</label>
+                            <div class="col-sm-8">
+                                <img id="ennavatar" src="" alt="..." class="img-thumbnail" style="width: 50%;">
+                                <input type="file" name="ennavatarfile" id="ennavatarfile" onchange="eshowimg(this);" style="display: none">
+                                <input type="hidden" name="ennimguserold" id="ennimguserold">
+                            </div>
+                        </div>
+
+                </div>
+            </div>
           </div>
+        <!-- Modal footer -->
         <div class="modal-footer">
-          <button type="button" class="btn btn-info" data-dismiss="modal">Đóng cửa sổ</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng cửa sổ</button>
+          <button type="submit" class="btn btn-primary">Cập nhật</button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- end modal -->
+
+  <!-- end modal -->
+<!-- end Model -->
+
+<!-- model xoa quang cao -->
+<div class="modal fade nn-modal-delete-listpro"  id="myModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Xóa Quảng cáo</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <!-- Modal body -->
+        <form class="form-horizontal" action="{{route('admin.post.delete.advert')}}" method="post" enctype="multipart/form-data">
+          @csrf
+          <input type="hidden" name="dennidlistpro" id="dennidlistpro" />
+          <input type="hidden" name="dennimglistpro" id="dennimglistpro" />
+          <div class="modal-body">
+            <div class="row">
+                <h4 class="nnbodydelete">Bạn có chắc xóa Quảng Cáo <i id="deletename"></i></h4>
+            </div>
+          </div>
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Đóng cửa sổ</button>
           <button type="submit" class="btn btn-warning">Xóa</button>
         </div>
         </form>
       </div>
     </div>
   </div>
-</div>
+
   <!-- end modal -->
+
+  <!-- end modal -->
+<!-- end model -->
 @endsection
 @section('script')
   <script src="{{ asset('js/advert.js') }}"></script>

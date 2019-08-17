@@ -40,7 +40,7 @@ class AppServiceProvider extends ServiceProvider
            }
 //           dd($menu);
 
-            $views->with('menus' , $menu);
+            $views->with(['menus' => $menu, 'categories' => $categories]);
         });
     }
 }

@@ -52,11 +52,11 @@
                             @foreach ($users as $key => $user)
                                 <tr>
                                     <td>{{ $key+1 }}</td>
-                                    <td>{{ $user->user_name }}</td>
-                                    <td>{{ $user->user_email }}</td>
+                                    <td>{{ $user->name }}</td>
+                                    <td>{{ $user->email }}</td>
                                     <td>{{ $user->phone }}</td>
                                     <td>
-                                        <a href="{{ route('admin.post.action.user',['user_active',$user->user_id]) }}"
+                                        <a href="{{ route('admin.post.action.user',['user_active',$user->id]) }}"
                                            class="{{ $user->getStatus($user->user_active)['class'] }}" title="@if ($user->getStatus($user->user_active)['name'] == "Kích hoạt")
                                         {!! "Khóa tài khoản" !!}
                                         @else
@@ -66,7 +66,7 @@
                                         </a>
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.post.action.user', ['delete', $user->user_id]) }}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản {{$user->user_name}}?')">
+                                        <a href="{{ route('admin.post.action.user', ['delete', $user->id]) }}" onclick="return confirm('Bạn có chắc muốn xóa tài khoản {{$user->name}}?')">
                                             <i class="fa fa-trash">Xóa</i>
                                         </a>
 

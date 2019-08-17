@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="assets/admin/css/adminlte.min.css">
   <link rel="stylesheet" href="assets/admin/ionicons/css/ionicons.min.css">
   <link rel="stylesheet" href="assets/admin/css/toastr.css">
+  <link rel="stylesheet" href="assets/admin/css/style.css">
   <!-- Google Font: Source Sans Pro -->
   <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
   @yield('style')

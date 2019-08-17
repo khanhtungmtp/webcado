@@ -173,7 +173,7 @@
 
             </div><!-- Content Col end -->
 
-        @include('layout.sidebar');
+{{--        @include('layout.sidebar');--}}
 
         </div><!-- Row end -->
     </div><!-- Container end -->

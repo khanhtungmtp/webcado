@@ -40,17 +40,17 @@ class AdvertController extends Controller
                 $file = $request->file('nnavatarfile');
                 $nameimg = $file->getClientOriginalName();
                 $hinh = "longtriCo".str_random(6)."_".$nameimg;
-                while(file_exists("public/img/images_bn/".$hinh))
+                while(file_exists("img/uploads/images_bn/".$hinh))
                 {
                     $hinh = "longtriCo".str_random(6)."_".$nameimg;
                 }
-                $file->move("public/img/images_bn",$hinh);
+                $file->move("img/uploads/images_bn",$hinh);
                 $advert->img = $hinh;
             }else{
                 $advert->img = "no-img.png";
             }
         $advert->save();
-        return redirect('admin/advert/list')->with('thongbao','thêm thành công');
+        return redirect('admin/advert/list')->with('message','thêm thành công');
     }
     public function EditAdvert(Request $request){
         session(['actionuser' => 'edit','editid'=>$request->ennidadvert]);
@@ -76,36 +76,36 @@ class AdvertController extends Controller
             $file = $request->file('ennavatarfile');
             $nameimg = $file->getClientOriginalName();
             $hinh = "longtriCo".str_random(6)."_".$nameimg;
-            while(file_exists("public/img/images_bn/".$hinh))
+            while(file_exists("img/uploads/images_bn/".$hinh))
             {
                 $hinh = "longtriCo".str_random(6)."_".$nameimg;
             }
-            $file->move("public/img/images_bn",$hinh);
+            $file->move("img/uploads/images_bn",$hinh);
             // removefile
             $imgold = $request->ennimguserold;
             if($imgold !="no-img.png"){
-                while(file_exists("public/img/images_bn/".$imgold))
+                while(file_exists("img/uploads/images_bn/".$imgold))
                 {
-                    unlink("public/img/images_bn/".$imgold);
+                    unlink("img/uploads/images_bn/".$imgold);
                 }
             }
 
             $advert->img = $hinh;
         }
         $advert->save();
-        return redirect('admin/advert/list')->with('thongbao','sửa thành công');
+        return redirect('admin/advert/list')->with('message','sửa quang cao thành công');
     }
     public function DeleteAdvert(Request $request){
         $advert = Advert::find($request->dennidlistpro);
         $advert->delete();
         $imgold = $request->dennimglistpro;
             if($imgold !="no-img.png"){
-                while(file_exists("public/img/images_bn/".$imgold))
+                while(file_exists("img/uploads/images_bn/".$imgold))
                 {
-                    unlink("public/img/images_bn/".$imgold);
+                    unlink("img/uploads/images_bn/".$imgold);
                 }
             }
-        return redirect('admin/advert/list')->with('thongbao','Xóa thành công');
+        return redirect('admin/advert/list')->with('message','Xóa thành công');
 
     }
 }
