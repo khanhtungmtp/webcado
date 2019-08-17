@@ -76,10 +76,14 @@
                             <div class="card-body">
 
                                 <div class="form-group">
-                                    <label for="cat_id">Danh mục bài viết</label>
+                                    <label for="cat_id">Loại danh mục</label>
                                     <select name="cat_id" id="" class="form-control">
-                                        <option value="">--Danh mục bài viết--</option>
-                                        {{ cate_parent($categories) }}
+                                        <option value="">--Loại danh mục--</option>
+                                        @if ($categories)
+                                            @foreach ($categories as $category)
+                                                <option value="">--{{ $category->cat_name }}--</option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                     @if ($errors->has('cat_id'))
                                         <span class="text-danger">

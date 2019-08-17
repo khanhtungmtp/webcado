@@ -11,7 +11,7 @@
                     <div class="post-title-area">
                         <a class="post-cat" href="#">Food</a>
                         <h2 class="post-title">
-                            Tacos ditched the naked chicken chalupa, so here's how to make your own
+                        {{ $new->new_title }}
                         </h2>
                         <div class="post-meta">
                             <span class="post-author">
@@ -26,21 +26,7 @@
                     <!-- Post title end -->
                     <div class="post-content-area">
                         <div class="entry-content">
-                            <p> <span class="dropcap">T</span> ityful a rethoric question ran over her cheek When she reached the first hills of the Italic Mountains, she had a last view back on the skyline of her hometown Bookmarksgrove, the headline of Alphabet Village and the subline of her own road, the Line Lane.</p>
-                            <blockquote>A wonderful serenity has taken possession of my entire soul, like these sweet mornings of spring which I enjoy with my whole heart. I am alone and feel the charm of existence.</blockquote>
-                            <p>Lo-fi cred gastropub, brunch aliquip stumptown culpa. Banh mi eiusmod tattooed, freegan Schlitz master cleanse pug. Eu 8-bit id PBR Pinterest taxidermy, swag church-key Echo Park commodo yr. Adipisicing leggings enim laboris wayfarers, cliche Carles placeat typewriter mixtape cold-pressed. Etsy Pitchfork Austin, selvage beard reprehenderit ea ugh.</p>
-                            <h3>When, while the lovely valley teems with vapour around me, and the meridian sun strikes.</h3>
-                            <p><img class="pull-left" src="frontend/images/news/news-details/news-details2.jpg" class="img-fluid" alt=""></p>
-                            <p>Pitchfork kitsch plaid forage aliquip, sustainable taxidermy deserunt health goth stumptown cred VHS butcher. Mixtape fap Intelligentsia small batch placeat labore, bitters swag chia Echo Park. Four loko aliquip id, delectus beard Bushwick bespoke Blue Bottle eu keytar veniam ethical High Life pour-over.</p>
-                            <p>Art party photo booth deserunt exercitation plaid squid. Minim Austin 3 wolf moon scenester aesthetic, umami odio pariatur bitters. Pop-up occaecat taxidermy street art, tattooed beard literally duis photo booth Thundercats shabby chic. Pop-up occaecat taxidermy street art, tattooed beard literally duis photo booth Thundercats shabby Velit non seitan, tilde art party minim Thundercats viral.  Farm-to-table selfies labore, leggings cupidatat sunt taxidermy umami fanny pack typewriter hoodie art party voluptate cardigan banjo. Listicle paleo, drinking vinegar sint direct trade vegan 3 wolf moon.</p>
-                            <h3>Farm-to-table selfies labore leggings:</h3>
-                            <ul>
-                                <li>Plaid fashion axe semiotics skateboard</li>
-                                <li>Mixtape fap Intelligentsia small batch placeat labore</li>
-                                <li>Gleams steal into the inner sanctuary grow</li>
-                                <li>Like these sweet mornings of spring which</li>
-                            </ul>
-                            <p>High Life tempor retro Truffaut. Tofu mixtape twee, assumenda quinoa flexitarian aesthetic artisan vinyl pug. Chambray et Carles Thundercats cardigan actually, magna bicycle rights. Plaid fashion axe semiotics skateboard, try-hard food truck aesthetic biodiesel exercitation. Accusamus VHS Wes Anderson Banksy food truck vero.</p>
+                            {!! $new->new_content !!}
                         </div>
                         <!-- Entery content end -->
                         <div class="share-items clearfix">
@@ -92,6 +78,9 @@
                 <div class="related-posts block">
                     <h3 class="block-title"><span>Các bài viết cùng chuyên mục</span></h3>
                     <div id="latest-news-slide" class="owl-carousel owl-theme latest-news-slide">
+
+                        @foreach($same_news as $new_t)
+
                         <div class="item">
                             <div class="post-block-style clearfix">
                                 <div class="post-thumb">
@@ -100,7 +89,7 @@
                                 <a class="post-cat" href="#">Health</a>
                                 <div class="post-content">
                                     <h2 class="post-title title-medium">
-                                        <a href="#">Hynopedia helps female travelers find health care in Maldivs</a>
+                                        <a href="{{route('detail',$new_t->new_id)}}">{{ $new_t->new_title }}</a>
                                     </h2>
                                     <div class="post-meta">
                                         <span class="post-author"><a href="#">John Doe</a></span>
@@ -112,66 +101,7 @@
                             <!-- Post Block style end -->
                         </div>
                         <!-- Item 1 end -->
-                        <div class="item">
-                            <div class="post-block-style clearfix">
-                                <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/health5.jpg" alt="" /></a>
-                                </div>
-                                <a class="post-cat" href="#">Health</a>
-                                <div class="post-content">
-                                    <h2 class="post-title title-medium">
-                                        <a href="#">Netcix cuts out the chill with an integrated...</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="post-author"><a href="#">John Doe</a></span>
-                                        <span class="post-date">Feb 19, 2017</span>
-                                    </div>
-                                </div>
-                                <!-- Post content end -->
-                            </div>
-                            <!-- Post Block style end -->
-                        </div>
-                        <!-- Item 2 end -->
-                        <div class="item">
-                            <div class="post-block-style clearfix">
-                                <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel3.jpg" alt="" /></a>
-                                </div>
-                                <a class="post-cat" href="#">Travel</a>
-                                <div class="post-content">
-                                    <h2 class="post-title title-medium">
-                                        <a href="#">This Aeroplane that looks like a butt is the largest aircraft in the world</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="post-author"><a href="#">John Doe</a></span>
-                                        <span class="post-date">Feb 19, 2017</span>
-                                    </div>
-                                </div>
-                                <!-- Post content end -->
-                            </div>
-                            <!-- Post Block style end -->
-                        </div>
-                        <!-- Item 3 end -->
-                        <div class="item">
-                            <div class="post-block-style clearfix">
-                                <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel4.jpg" alt="" /></a>
-                                </div>
-                                <a class="post-cat" href="#">Travel</a>
-                                <div class="post-content">
-                                    <h2 class="post-title title-medium">
-                                        <a href="#">19 incredible photos from Disney's 'Star Wars' cruise algore</a>
-                                    </h2>
-                                    <div class="post-meta">
-                                        <span class="post-author"><a href="#">John Doe</a></span>
-                                        <span class="post-date">Feb 19, 2017</span>
-                                    </div>
-                                </div>
-                                <!-- Post content end -->
-                            </div>
-                            <!-- Post Block style end -->
-                        </div>
-                        <!-- Item 4 end -->
+                        @endforeach
                     </div>
                     <!-- Carousel end -->
                 </div>
@@ -242,11 +172,24 @@
                 <!-- Post comment end -->
                 <div class="comments-form">
                     <h3 class="title-normal">Nhập để bình luận</h3>
-                    <form role="form">
+                    <form role="form" action="{{route('comment')}}" method="post">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                        <!-- @if(Session::has('thanhcong'))
+						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
+						@endif -->
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <textarea class="form-control required-field" id="message" placeholder="Your Comment" rows="10" required></textarea>
+                                    <input class="form-control required-field" name="comment_author_email" type="email" placeholder="Nhập email" name="email" required >
+                                </div>
+                            </div>
+                            <!-- Col end -->
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea class="form-control required-field" name="comments_content" id="message" placeholder="Your Comment" rows="10" required></textarea>
                                 </div>
                             </div>
                             <!-- Col end -->

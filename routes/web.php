@@ -11,7 +11,8 @@
 |
 */
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('chi-tiet-bai-viet', 'HomeController@detail')->name('detail');
+Route::get('chi-tiet-bai-viet/{id}', 'HomeController@detail')->name('detail');
+Route::post('comment', 'HomeController@postComment')->name('comment');
 Route::get('danh-muc', 'HomeController@category')->name('category');
 Route::get('/dang-nhap-admin', 'AdminController@adminGetLogin')->name('admin.get.login');
 Route::post('/dang-nhap-admin', 'AdminController@adminPostLogin')->name('admin.post.login');
@@ -57,6 +58,17 @@ Route::group(['prefix'=>'admin', 'middleware' => 'AdminAccess'],function ()
         Route::get('/', 'RatingController@adminRating')->name('admin.get.list.rating');
         Route::get('/{action}/{id}', 'AdminRatingController@action')->name('admin.post.action.rating');
     });
+
+    // quan ly quang cao
+
+    Route::group(['prefix' => 'advert'], function ()
+    {
+      Route::get('list','AdvertController@ListAdvert')->name('admin.get.list.advert');
+      Route::post('list','AdvertController@AddAdvert');
+      Route::post('list/edit','AdvertController@EditAdvert');
+      Route::post('list/delete','AdvertController@DeleteAdvert');
+    });
+
 
     Route::get('/dang-xuat', 'AdminController@logoutAdmin')->name('admin.get.logout');
 

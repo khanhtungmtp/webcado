@@ -42,9 +42,9 @@
                     <div class="item" style="background-image:url(frontend/images/news/lifestyle/health5.jpg)">
                         <div class="featured-post">
                             <div class="post-content">
-                                <a class="post-cat" href="#">Xổ số</a>
+                                <a class="post-cat" >Xổ số</a>
                                 <h2 class="post-title title-extra-large">
-                                    <a href="detail.html">Kết quả xổ số hôm nay</a>
+                                    <a href="">Kết quả xổ số hôm nay</a>
                                 </h2>
                                 <span class="post-date">15 tháng 08, 2019</span>
                             </div>

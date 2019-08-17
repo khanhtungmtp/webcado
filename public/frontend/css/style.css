@@ -2529,3 +2529,14 @@ label {
      right: 0;
      top: 3px;
   }
+  .col-md-12 .form-group input{
+      box-shadow: none;
+    border: 1px solid #dadada;
+    padding: 5px 20px;
+    height: 40px;
+    width: 729px;
+    background: none;
+    color: #959595;
+    font-size: 12px;
+    border-radius: 0;
+  }

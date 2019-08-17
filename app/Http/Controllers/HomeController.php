@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Category;
+use App\Models\News;
+use App\Models\Comment;
 class HomeController extends Controller
 {
     /**
@@ -25,14 +27,33 @@ class HomeController extends Controller
     {
         return view('client.page.trangchu');
     }
-    public function detail(Request $req)
+    public function detail($id)
     {
-        return view('client.page.detail');
+
+        $new = News::where('new_id',$id)->first();
+        $same_news = News::where('cat_id',$new->cat_id)->paginate(3);
+        $new_k = News::Orderby('new_view','desc')->paginate(3);
+        return view('client.page.detail',compact('new','same_news','new_k'));
     }
     public function category(Request $req)
     {
         return view('client.page.category');
     }
+    public function postComment(Request $req){
+
+       $comment = new Comment;
+
+    $comment->user_id =1;
+       $comment->comment_author_email = $req->comment_author_email;
+
+
+       $comment->comment_content = $req->comments_content ;
+
+       $comment->save();
+        return redirect()->back();
+
+   }
+
 
 
 }

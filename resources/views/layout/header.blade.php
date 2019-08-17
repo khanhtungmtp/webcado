@@ -1,20 +1,24 @@
 <div id="top-bar" class="top-bar">
-  <div class="container">
- <div class="row">
-  <div class="col-md-8">
-  </div><!--/ Top bar left end -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+            </div><!--/ Top bar left end -->
 
-  <div class="col-md-4 top-social text-lg-right text-md-center">
-     <ul class="unstyled">
-        <li>
-          <button  class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm">Đăng ký</button>
-          <button  class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#elegantModalForm">Đăng nhập</button>
+            <div class="col-md-4 top-social text-lg-right text-md-center">
+                <ul class="unstyled">
+                    <li>
+                        <button class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm">
+                            Đăng ký
+                        </button>
+                        <button class="btn btn-default btn-rounded my-3" data-toggle="modal"
+                                data-target="#elegantModalForm">Đăng nhập
+                        </button>
 
-        </li>
-     </ul><!-- Ul end -->
-  </div><!--/ Top social col end -->
- </div><!--/ Content row end -->
-</div><!--/ Container end -->
+                    </li>
+                </ul><!-- Ul end -->
+            </div><!--/ Top social col end -->
+        </div><!--/ Content row end -->
+    </div><!--/ Container end -->
 </div><!--/ Topbar end -->
 
 <!-- Header start -->
@@ -24,7 +28,7 @@
             <div class="col-md-3 col-sm-12">
                 <div class="logo">
                     <a href="./">
-                    <img src="frontend/images/logos/logo.png" alt="">
+                        <img src="frontend/images/logos/logo.png" alt="">
                     </a>
                 </div>
             </div>
@@ -47,10 +51,12 @@
         <div class="row">
             <nav class="navbar navbar-expand-lg col">
                 <div class="site-nav-inner float-left">
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="true" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
-                    <span class="navbar-toggler-icon"></span>
+                    <button class="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="true" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
+                        <span class="navbar-toggler-icon"></span>
                     </button>
                     <!-- End of Navbar toggler -->
                     <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
@@ -58,29 +64,25 @@
                             <li class="nav-item dropdown active">
                                 <a href="#" class="nav-link" data-toggle="dropdown">TRANG CHỦ </a>
                             </li>
-<!--                            --><?php
-//                            echo "<pre>";
-//                            print_r($menus);
-//                            echo "</pre>";
-//                            ?>
+
                             @foreach($menus as $key => $menu)
-                            <li class="dropdown">
+                                <li class="dropdown">
                                     <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown"
                                        role="button" aria-haspopup="true" aria-expanded="false">
-{{ $key }}
+                                        {{ $key }}
                                         <i class="fa fa-angle-down"></i>
                                     </a>
-                                <ul class="dropdown-menu" role="menu">
-                                    @foreach($menu as $mn)
-                                    <li class="dropdown-submenu">
-                                        <a href="">{{$mn}}</a>
-                                    </li>
-                                    @endforeach
-                                </ul>
+                                    <ul class="dropdown-menu" role="menu">
+                                        @foreach($menu as $mn)
+                                            <li class="dropdown-submenu">
+                                                <a href="">{{$mn}}</a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
 
-                            </li>
-                            @endforeach
-                            <!-- Tab menu end -->
+                                </li>
+                        @endforeach
+                        <!-- Tab menu end -->
                             <!-- Features menu end -->
                         </ul>
                         <!--/ Nav ul end -->

@@ -36,7 +36,7 @@ class News extends Model
 
 
     /**
-     * category_id là khóa ngoại của product
+     * category_id là khóa ngoại của news
      **/
     public function category()
     {

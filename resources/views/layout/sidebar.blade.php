@@ -1,7 +1,7 @@
 <div class="col-lg-4 col-md-12">
     <div class="sidebar sidebar-right">
         <div class="widget color-default">
-            <h3 class="block-title"><span>Các tin khác</span></h3>
+            <h3 class="block-title"><span>Các tin xem nhiều nhất</span></h3>
             <div class="post-overaly-style clearfix">
                 <div class="post-thumb">
                     <a href="#">
@@ -11,10 +11,10 @@
                 <div class="post-content">
                     <a class="post-cat" href="#">Health</a>
                     <h2 class="post-title title-small">
-                        <a href="#">Smart packs parking sensor tech and beeps when col…</a>
+                        <a href="{{ route('detail',$new->new_id)}}">{!! $new->new_title !!}</a>
                     </h2>
                     <div class="post-meta">
-                        <span class="post-date">Feb 06, 2017</span>
+                        <span class="post-date">{!! $new->created_at !!}</span>
                     </div>
                 </div>
                 <!-- Post content end -->
@@ -22,6 +22,8 @@
             <!-- Post Overaly Article end -->
             <div class="list-post-block">
                 <ul class="list-post">
+
+                    @foreach($new_k as $new)
                     <li class="clearfix">
                         <div class="post-block-style post-float clearfix">
                             <div class="post-thumb">
@@ -33,7 +35,7 @@
                             <!-- Post thumb end -->
                             <div class="post-content">
                                 <h2 class="post-title title-small">
-                                    <a href="#">Panasonic's new Sumix CH7 an ultra portable filmmaker's drea…</a>
+                                    <a href="#">{!! $new->new_title !!}</a>
                                 </h2>
                                 <div class="post-meta">
                                     <span class="post-date">Mar 13, 2017</span>
@@ -44,71 +46,7 @@
                         <!-- Post block style end -->
                     </li>
                     <!-- Li 1 end -->
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                <img class="img-fluid" src="frontend/images/news/lifestyle/travel5.jpg" alt="" />
-                                </a>
-                                <a class="post-cat" href="#">Travel</a>
-                            </div>
-                            <!-- Post thumb end -->
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">Hynopedia helps female travelers find health care...</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">Jan 11, 2017</span>
-                                </div>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post block style end -->
-                    </li>
-                    <!-- Li 2 end -->
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                <img class="img-fluid" src="frontend/images/news/tech/robot5.jpg" alt="" />
-                                </a>
-                                <a class="post-cat" href="#">Robotics</a>
-                            </div>
-                            <!-- Post thumb end -->
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">Robots in hospitals can be quite handy to navigate around...</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">Feb 19, 2017</span>
-                                </div>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post block style end -->
-                    </li>
-                    <!-- Li 3 end -->
-                    <li class="clearfix">
-                        <div class="post-block-style post-float clearfix">
-                            <div class="post-thumb">
-                                <a href="#">
-                                <img class="img-fluid" src="frontend/images/news/lifestyle/food1.jpg" alt="" />
-                                </a>
-                                <a class="post-cat" href="#">Food</a>
-                            </div>
-                            <!-- Post thumb end -->
-                            <div class="post-content">
-                                <h2 class="post-title title-small">
-                                    <a href="#">Tacos ditched the naked chicken chalupa, so here's how…</a>
-                                </h2>
-                                <div class="post-meta">
-                                    <span class="post-date">Feb 27, 2017</span>
-                                </div>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post block style end -->
-                    </li>
+                    @endforeach
                     <!-- Li 4 end -->
                 </ul>
                 <!-- List post end -->
