@@ -6,24 +6,20 @@
             <div class="col-md-12">
                 <h3 class="trending-title">Tin mới nhất</h3>
                 <div id="trending-slide" class="owl-carousel owl-theme trending-slide">
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-small">
-                                <a href="#">Soi kèo xổ số ngày 13/08</a>
-                            </h2>
-                        </div>
-                        <!-- Post content end -->
-                    </div>
+                    @if($new_lasted)
+                        @foreach($new_lasted as $new)
+                            <div class="item">
+                                <div class="post-content">
+                                    <h2 class="post-title title-small">
+                                        <a href="#">{{ $new->new_title }}</a>
+                                    </h2>
+                                </div>
+                                <!-- Post content end -->
+                            </div>
+                        @endforeach
+                    @endif
                     <!-- Item 1 end -->
-                    <div class="item">
-                        <div class="post-content">
-                            <h2 class="post-title title-small">
-                                <a href="#">Nhận định kèo Chelse - Liverpool 2019</a>
-                            </h2>
-                        </div>
-                        <!-- Post content end -->
-                    </div>
-                    <!-- Item 2 end -->
+                   
                 </div>
                 <!-- Carousel end -->
             </div>
@@ -39,45 +35,27 @@
         <div class="row">
             <div class="col-lg-6 col-md-12 pad-r">
                 <div id="featured-slider" class="owl-carousel owl-theme featured-slider">
-                    <div class="item" style="background-image:url(frontend/images/news/lifestyle/health5.jpg)">
-                        <div class="featured-post">
-                            <div class="post-content">
-                                <a class="post-cat" >Xổ số</a>
-                                <h2 class="post-title title-extra-large">
-                                    <a href="">Kết quả xổ số hôm nay</a>
-                                </h2>
-                                <span class="post-date">15 tháng 08, 2019</span>
+                    @if($new_lasted)
+                        @foreach($new_lasted as $new)
+                            <div class="item" style="background-image:url({{ pare_url_file($new->new_image, 'news') }})">
+                                <div class="featured-post">
+                                    <div class="post-content">
+                                        <a class="post-cat" >{{ $new->category->cat_name }}</a>
+                                        <h2 class="post-title title-extra-large">
+                                            <a href="{{ route('') }}">{{ $new->new_title }}</a>
+                                        </h2>
+                                        <span class="post-date">{{ $new->created_at }}</span>
+                                    </div>
+                                </div>
+                                <!--/ Featured post end -->
                             </div>
-                        </div>
-                        <!--/ Featured post end -->
-                    </div>
-                    <!-- Item 1 end -->
-                    <div class="item" style="background-image:url(frontend/images/news/tech/gadget2.jpg)">
-                        <div class="featured-post">
-                            <div class="post-content">
-                                <a class="post-cat" href="#">Soi kèo</a>
-                                <h2 class="post-title title-extra-large">
-                                    <a href="#">Soi kèo tài xỉu trận LA Galaxy vs FC Dallas, 09h30 ngày 15/08</a>
-                                </h2>
-                                <span class="post-date">15 tháng 08, 2019</span>
-                            </div>
-                        </div>
-                        <!--/ Featured post end -->
-                    </div>
-                    <!-- Item 2 end -->
-                    <div class="item" style="background-image:url(frontend/images/news/lifestyle/travel5.jpg)">
-                        <div class="featured-post">
-                            <div class="post-content">
-                                <a class="post-cat" href="#">Nhận định</a>
-                                <h2 class="post-title title-extra-large">
-                                    <a href="#">Kristiansund vs Bodo Glimt, 00h00 ngày 15/08</a>
-                                </h2>
-                                <span class="post-date">15 tháng 08, 2019</span>
-                            </div>
-                        </div>
-                        <!--/ Featured post end -->
-                    </div>
-                    <!-- Item 3 end -->
+                            <!-- Item 1 end -->
+                        @endforeach
+                    @endif
+
+
+
+                   
                 </div>
                 <!-- Featured owl carousel end-->
             </div>
@@ -99,54 +77,7 @@
                         </div>
                         <!-- Post Overaly end -->
                     </div>
-                    <!-- Col end -->
-                    <div class="col-md-6 pad-l-small">
-                        <div class="post-overaly-style contentTop fourNewsboxTop clearfix">
-                            <div class="post-thumb">
-                                <a href="#"><img class="img-fluid" src="frontend/images/news/tech/game1.jpg" alt="" /></a>
-                            </div>
-                            <div class="post-content">
-                                <a class="post-cat" href="#">Games</a>
-                                <h2 class="post-title title-medium">
-                                    <a href="#">Win2888 là nhà cái lô đề online có tỉ lệ ăn và chi chả hoa hồng cao nhất thị trường hiện nay :...</a>
-                                </h2>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post Overaly end -->
-                    </div>
-                    <!-- Col end -->
-                    <div class="col-md-6 pad-r-small">
-                        <div class="post-overaly-style contentTop fourNewsbox clearfix">
-                            <div class="post-thumb">
-                                <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel2.jpg" alt="" /></a>
-                            </div>
-                            <div class="post-content">
-                                <a class="post-cat" href="#">Soi kèo</a>
-                                <h2 class="post-title title-medium">
-                                    <a href="#">Soi kèo tài xỉu trận FC Porto vs FC Krasnodar, 02h00 ngày 14/08 (Vòng sơ loại C1)…</a>
-                                </h2>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post Overaly end -->
-                    </div>
-                    <!-- Col end -->
-                    <div class="col-md-6 pad-l-small">
-                        <div class="post-overaly-style contentTop fourNewsbox clearfix">
-                            <div class="post-thumb">
-                                <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/health1.jpg" alt="" /></a>
-                            </div>
-                            <div class="post-content">
-                                <a class="post-cat" href="#">Games</a>
-                                <h2 class="post-title title-medium">
-                                    <a href="#">Nhà cái Win2888 với hệ thống camera hiện đại cùng cá Dealer chuyên nghiệp...</a>
-                                </h2>
-                            </div>
-                            <!-- Post content end -->
-                        </div>
-                        <!-- Post Overaly end -->
-                    </div>
+                   
                     <!-- Col end -->
                 </div>
                 <!-- Row end -->

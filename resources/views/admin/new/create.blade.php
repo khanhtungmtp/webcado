@@ -79,11 +79,7 @@
                                     <label for="cat_id">Loại danh mục</label>
                                     <select name="cat_id" id="" class="form-control">
                                         <option value="">--Loại danh mục--</option>
-                                        @if ($categories)
-                                            @foreach ($categories as $category)
-                                                <option value="">--{{ $category->cat_name }}--</option>
-                                            @endforeach
-                                        @endif
+                                        {{ cate_parent($categories) }}
                                     </select>
                                     @if ($errors->has('cat_id'))
                                         <span class="text-danger">

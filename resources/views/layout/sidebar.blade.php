@@ -23,7 +23,7 @@
             <div class="list-post-block">
                 <ul class="list-post">
 
-                    @foreach($new_k as $new)
+                    @foreach($new_views as $new)
                     <li class="clearfix">
                         <div class="post-block-style post-float clearfix">
                             <div class="post-thumb">

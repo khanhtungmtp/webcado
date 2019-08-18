@@ -5,17 +5,7 @@
             </div><!--/ Top bar left end -->
 
             <div class="col-md-4 top-social text-lg-right text-md-center">
-                <!-- <ul class="unstyled">
-                    <li>
-                        <button class="btn btn-default btn-rounded my-3" data-toggle="modal" data-target="#modalLRForm">
-                            Đăng ký
-                        </button>
-                        <button class="btn btn-default btn-rounded my-3" data-toggle="modal"
-                                data-target="#elegantModalForm">Đăng nhập
-                        </button>
 
-                    </li>
-                </ul> -->
                 <ul class="login">
 					@if(Auth::check())
 						<li><a href="">Chào bạn {{Auth::user()->name}}</a></li>
@@ -38,7 +28,7 @@
         <div class="row">
             <div class="col-md-3 col-sm-12">
                 <div class="logo">
-                    <a href="./">
+                    <a href="">
                         <img src="frontend/images/logos/logo.png" alt="">
                     </a>
                 </div>
@@ -46,8 +36,11 @@
             <!-- logo col end -->
             <div class="col-md-9 col-sm-12 header-right">
                 <div class="ad-banner float-right">
-                    <a href="#"><img src="frontend/images/banner-ads/ad-top-header.png" class="img-fluid" alt=""></a>
+                    @foreach($adverts_top as $key => $ads)
+                    <a href="#"><img src="{{ pare_url_file($ads->img, 'images_bn') }}" class="img-fluid" alt=""></a>
+                    @endforeach
                 </div>
+                <?php $key = $key +1; ?>
             </div>
             <!-- header right end -->
         </div>
@@ -73,12 +66,12 @@
                     <div id="navbarSupportedContent" class="collapse navbar-collapse navbar-responsive-collapse">
                         <ul class="nav navbar-nav">
                             <li class="nav-item dropdown active">
-                                <a href="#" class="nav-link" data-toggle="dropdown">TRANG CHỦ </a>
+                                <a href="{{ route('home') }}" class="nav-link">TRANG CHỦ </a>
                             </li>
 
                             @foreach($menus as $key => $menu)
                                 <li class="dropdown">
-                                    <a href="{{ str_slug($key) }}" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                    <a href="{{ str_slug($key) }}.html" class="nav-link dropdown-toggle" data-toggle="dropdown"
                                        role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ $key }}
                                         <i class="fa fa-angle-down"></i>

@@ -107,67 +107,50 @@
                 </div>
                 <!-- Related posts end -->
                 <!-- Post comment start -->
-                <div id="comments" class="comments-area block">
-                    <h3 class="block-title"><span>03 Bình luận</span></h3>
-                    <ul class="comments-list">
-                        <li>
-                            <div class="comment">
-                                <img class="comment-avatar pull-left" alt="" src="frontend/images/news/user1.png">
-                                <div class="comment-body">
-                                    <div class="meta-data">
-                                        <span class="comment-author">Michelle Aimber</span>
-                                        <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p>High Life tempor retro Truffaut. Tofu mixtape twee, assumenda quinoa flexitarian aesthetic artisan vinyl pug. Chambray et Carles Thundercats cardigan actually, magna bicycle rights.</p>
-                                    </div>
-                                    <div class="text-left">
-                                        <a class="comment-reply" href="#">Reply</a>
-                                    </div>
-                                </div>
-                            </div>
-                            Comments end -->
-                            <ul class="comments-reply">
-                                <li>
-                                    <div class="comment">
-                                        <img class="comment-avatar pull-left" alt="" src="frontend/images/news/user2.png">
-                                        <div class="comment-body">
-                                            <div class="meta-data">
-                                                <span class="comment-author">Genelia Dusteen</span>
-                                                <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
+                <div class="row">
+                     <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">Comments</div>
+
+                            <div class="panel-body comment-container" >
+
+                                @foreach($comments as $comment)
+                                    <div class="well">
+                                        <i><b> {{ $comment->name }} </b></i>&nbsp;&nbsp;
+                                        <span> {{ $comment->comment }} </span>
+                                        <div style="margin-left:10px;">
+                                            <a style="cursor: pointer;" cid="{{ $comment->id }}" name_a="{{ Auth::user()->name }}" token="{{ csrf_token() }}" class="reply">Reply</a>&nbsp;
+                                            <a style="cursor: pointer;"  class="delete-comment" token="{{ csrf_token() }}" comment-did="{{ $comment->id }}" >Delete</a>
+                                            <div class="reply-form">
+
+                                                <!-- Dynamic Reply form -->
+
                                             </div>
-                                            <div class="comment-content">
-                                                <p>Farm-to-table selfies labore, leggings cupidatat sunt taxidermy umami fanny pack typewriter hoodie art party voluptate cardigan banjo.</p>
-                                            </div>
-                                            <div class="text-left">
-                                                <a class="comment-reply" href="#">Reply</a>
-                                            </div>
+                                            @foreach($comment->replies as $rep)
+                                                 @if($comment->id === $rep->comment_id)
+                                                    <div class="well">
+                                                        <i><b> {{ $rep->name }} </b></i>&nbsp;&nbsp;
+                                                        <span> {{ $rep->reply }} </span>
+                                                        <div style="margin-left:10px;">
+                                                            <a rname="{{ Auth::user()->name }}" rid="{{ $comment->id }}" style="cursor: pointer;" class="reply-to-reply" token="{{ csrf_token() }}">Reply</a>&nbsp;<a did="{{ $rep->id }}" class="delete-reply" token="{{ csrf_token() }}" >Delete</a>
+                                                        </div>
+                                                        <div class="reply-to-reply-form">
+
+                                                            <!-- Dynamic Reply form -->
+
+                                                        </div>
+
+                                                    </div>
+                                                @endif
+                                            @endforeach
+
                                         </div>
                                     </div>
-                                    <!-- Comments end -->
-                                </li>
-                            </ul>
-                            <!-- comments-reply end -->
-                            <div class="comment last">
-                                <img class="comment-avatar pull-left" alt="" src="frontend/images/news/user1.png">
-                                <div class="comment-body">
-                                    <div class="meta-data">
-                                        <span class="comment-author">Michelle Aimber</span>
-                                        <span class="comment-date pull-right">January 17, 2017 at 1:38 pm</span>
-                                    </div>
-                                    <div class="comment-content">
-                                        <p>VHS Wes Anderson Banksy food truck vero. Farm-to-table selfies labore, leggings cupidatat sunt taxidermy umami fanny pack typewriter hoodie art party voluptate cardigan banjo.</p>
-                                    </div>
-                                    <div class="text-left">
-                                        <a class="comment-reply" href="#">Reply</a>
-                                    </div>
-                                </div>
+                                @endforeach
+
                             </div>
-                            <!-- Comments end
-                        </li>
-                        <!-- Comments-list li end -->
-                    </ul>
-                    <!-- Comments-list ul end -->
+                        </div>
+                    </div>
                 </div>
                 <!-- Post comment end -->
                 <div class="comments-form">

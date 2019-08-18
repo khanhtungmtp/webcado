@@ -38,7 +38,8 @@ class AdminNewController extends Controller
      */
     public function create()
     {
-        $categories = Category::where('cat_parent_id', '>', 0)->get();
+//        $categories = Category::where('cat_parent_id', '>', 0)->get();
+        $categories= $this->getAllCategories();
         return view('admin.new.create', compact('categories'));
     }
 

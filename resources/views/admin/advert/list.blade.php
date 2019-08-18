@@ -112,6 +112,13 @@
           @csrf
           <div class="modal-body">
             <div class="row">
+              @if(count($errors)>0)
+                   <div class="alert-tb alert alert-danger">
+                       @foreach($errors->all() as $err)
+                         <i class="fa fa-exclamation-circle"></i> {{ $err }}<br/>
+                       @endforeach
+                   </div>
+               @endif
                 <div class="col-xs-12">
                     <div class="form-group">
                         <label for="nnchar" class="col-sm-3 control-label"><i class="fab fa-free-code-camp"></i> Hiện thị:</label>
@@ -144,7 +151,7 @@
                     <div class="form-group">
                         <label for="nnlink" class="col-sm-3 control-label"><i class="fab  fa-free-code-camp"></i> Thứ tự:</label>
                         <div class="col-sm-9">
-                          <input type="text" class="form-control" name="sort" id="idesort" placeholder="Nhấp số thứ tự xắp xếp">
+                          <input type="text" class="form-control" name="sort" id="idsort" placeholder="Nhấp số thứ tự xắp xếp">
                         </div>
                     </div>
                     <div class="form-group">
@@ -161,14 +168,12 @@
                     </div>
 
                     <div class="form-group">
-                            <label for="nnavatar" class="col-sm-4 control-label"><i class="fas fa-image"></i> Hình ảnh</label>
-                            <div class="col-sm-8">
-                                <img id="nnavatar" src="" alt="..." class="img-thumbnail" style="width: 50%;">
-                                <input type="file" name="ennavatarfile" id="ennavatarfile" onchange="eshowimg(this);" style="display: none">
-                                <input type="hidden" name="nnavatarfile" id="nnavatarfile">
-                            </div>
-                        </div>
-
+                        <label for="nnavatar" class="col-sm-3 control-label"><i class="fas fa-image"></i> Hình ảnh</label>
+                         <div class="col-sm-9">
+                             <img id="nnavatar" src="" alt="..." class="img-thumbnail" style="width: 50%;">
+                             <input type="file" name="nnavatarfile" id="nnavatarfile" onchange="showimg(this);">
+                         </div>
+                    </div>
                 </div>
             </div>
           </div>

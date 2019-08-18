@@ -71,7 +71,7 @@
       <a href="{{route('admin.get.list.advert')}}" class="nav-link @if(Route::is('admin.get.list.advert')) menu-open @endif">
         <i class="nav-icon fas fa-ad"></i>
         <p>
-          Quang Cao
+          Quảng cáo
         </p>
       </a>
     </li>

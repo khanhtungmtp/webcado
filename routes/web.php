@@ -10,13 +10,17 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::resource('/comments','ClientCommentController');
+Route::resource('/replies','RepliesController');
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('register', 'ClientLoginController@getRegister')->name('getRegister');
 Route::post('postRegister', 'ClientLoginController@postRegister')->name('postRegister');
 Route::get('login', 'ClientLoginController@getLogin')->name('getLogin');
 Route::post('postLogin', 'ClientLoginController@postLogin')->name('postLogin');
 Route::get('logout', 'ClientLoginController@postLogout')->name('postLogout');
-Route::get('/{catParent}/{catChild}', 'NewByCategoryController@index')->name('news.get.by.category');
+Route::get('/{catParent}/{catChild}.html', 'NewByCategoryController@index')->name('news.get.by.category');
+Route::get('/{catParent}.html', 'NewByCategoryController@index1')->name('news.get.by.category1');
 Route::get('chi-tiet-bai-viet/{id}', 'HomeController@detail')->name('detail');
 Route::post('comment', 'HomeController@postComment')->name('comment');
 Route::get('danh-muc', 'HomeController@category')->name('category');
