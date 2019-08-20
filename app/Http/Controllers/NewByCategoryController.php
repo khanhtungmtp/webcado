@@ -17,7 +17,7 @@ class NewByCategoryController extends Controller
             $category = Category::where('cat_slug', $catChild)->first();
         }
         $news = News::where('cat_id', $category->cat_id)->get();
-//        dd($news);
+       // dd($news);
         return view('client.page.category', compact('category', 'news'));
     }
 
@@ -25,7 +25,7 @@ class NewByCategoryController extends Controller
     {
         $category = Category::where('cat_slug', $catParent)->first();
         $news = News::where('cat_id', $category->cat_id)->get();
-//        dd($news);
+       // dd($category);
         return view('client.page.category', compact('category', 'news'));
     }
 }

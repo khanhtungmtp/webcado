@@ -198,6 +198,7 @@ img.pull-right {
 ol,
 ul {
    margin-bottom: 20px;
+    list-style: none;
 }
 
 .unstyled {
@@ -1043,7 +1044,7 @@ span.post-comment span {
 ================================================== */
 
 .top-bar {
-   padding: 0px 0;
+   padding: 28px  0;
    border-bottom: 1px solid #0c0c0c;
    color: #a3a3a3;
    font-size: 13px;
@@ -1116,20 +1117,7 @@ span.post-comment span {
     position: relative;
     text-decoration: none;
 }
-.top-social li a:before {
-    background-color: #CCD0D5;
-    border-radius: 5px 5px 5px 5px;
-    box-shadow: 0 1px 1px #909193 inset, 0 1px 0 #FFFFFF;
-    content: "";
-    display: block;
-    height: 100%;
-    left: -8px;
-    padding: 8px;
-    position: absolute;
-    top: -8px;
-    width: 100%;
-    z-index: -1;
-}
+
 
 .top-social li a:hover {
    color: #333;
@@ -2552,9 +2540,24 @@ label {
     border: 1px solid #dadada;
     padding: 5px 20px;
     height: 40px;
-    width: 729px;
+    /*width: 729px;*/
     background: none;
     color: #959595;
     font-size: 12px;
     border-radius: 0;
   }
+
+  .well {
+	min-height: 20px;
+	padding: 19px;
+	margin-bottom: 20px;
+	background-color: #f5f5f5;
+	border: 1px solid #e3e3e3;
+	border-radius: 4px;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05)
+}
+.reply-form textarea{
+    width: 302px;
+    height: 59px;
+}

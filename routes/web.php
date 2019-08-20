@@ -1,5 +1,7 @@
 <?php
 
+
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -10,19 +12,13 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-Route::resource('/comments','ClientCommentController');
-Route::resource('/replies','RepliesController');
 Route::get('/', 'HomeController@index')->name('home');
-Route::get('register', 'ClientLoginController@getRegister')->name('getRegister');
-Route::post('postRegister', 'ClientLoginController@postRegister')->name('postRegister');
-Route::get('login', 'ClientLoginController@getLogin')->name('getLogin');
-Route::post('postLogin', 'ClientLoginController@postLogin')->name('postLogin');
-Route::get('logout', 'ClientLoginController@postLogout')->name('postLogout');
 Route::get('/{catParent}/{catChild}.html', 'NewByCategoryController@index')->name('news.get.by.category');
 Route::get('/{catParent}.html', 'NewByCategoryController@index1')->name('news.get.by.category1');
-Route::get('chi-tiet-bai-viet/{id}', 'HomeController@detail')->name('detail');
-Route::post('comment', 'HomeController@postComment')->name('comment');
+// Route::get('chi-tiet-bai-viet/{id}', 'HomeController@detail')->name('detail');
+Route::match(['get', 'post'], 'chi-tiet-bai-viet/{id}',  'HomeController@detail')->name('detail');
+// Route::post('comment/{id}', 'HomeController@postComment')->name('comment');
+
 Route::get('danh-muc', 'HomeController@category')->name('category');
 Route::get('/dang-nhap-admin', 'AdminController@adminGetLogin')->name('admin.get.login');
 Route::post('/dang-nhap-admin', 'AdminController@adminPostLogin')->name('admin.post.login');
@@ -87,5 +83,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'AdminAccess'],function ()
 Auth::routes();
 
 // chat realtime
-Route::get('/chat', 'ChatController@chat')->middleware('auth');
+Route::get('/messages', 'ChatController@getMessages');
+Route::post('/messages', 'ChatController@postMessages');
+Route::get('/get-user-current-chat', 'ChatController@getUserCurrentChat');
+Route::post('/user-info', 'ChatController@userInfo');
 Route::get('/user-login');

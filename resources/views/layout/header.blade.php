@@ -7,15 +7,9 @@
             <div class="col-md-4 top-social text-lg-right text-md-center">
 
                 <ul class="login">
-					@if(Auth::check())
-						<li><a href="">Chào bạn {{Auth::user()->name}}</a></li>
-						<li><a href="{{route('logout')}}">Đăng xuất</a></li>
-					@else
-						<li><a href="{{route('register')}}">Đăng kí</a></li>
-						<li><a href="{{route('login')}}">Đăng nhập</a></li>
-					@endif
-
-					</ul>
+                    <li><a href="http://www.win2888.com/?af6840&lang=vn">Đăng kí</a></li>
+                    <li><a href="http://www.win2888.com/?af6840&lang=vn">Đăng nhập</a></li>
+                </ul>
 
             </div><!--/ Top social col end -->
         </div><!--/ Content row end -->
@@ -71,7 +65,7 @@
 
                             @foreach($menus as $key => $menu)
                                 <li class="dropdown">
-                                    <a href="{{ str_slug($key) }}.html" class="nav-link dropdown-toggle" data-toggle="dropdown"
+                                    <a href="{{ str_slug($key) }}.html" class="nav-link dropdown-toggle"
                                        role="button" aria-haspopup="true" aria-expanded="false">
                                         {{ $key }}
                                         <i class="fa fa-angle-down"></i>
@@ -79,7 +73,7 @@
                                     @if ($menu)
                                         <ul class="dropdown-menu" role="menu">
                                             @foreach($menu as $mn)
-                                                <li class="dropdown-submenu">
+                                                <li >
                                                     {{-- <a href="{{ route('news.get.by.category', str_slug($mn)) }}">{{$mn}}</a>--}}
                                                     <a href="{{ route('news.get.by.category', ['catParent' => str_slug($key), 'catChild' => str_slug($mn)]) }}">{{$mn}}</a>
                                                 </li>

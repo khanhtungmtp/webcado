@@ -28,4 +28,8 @@ class Category extends Model
     {
         return array_get($this->status, $this->cat_publish, '[N\A]');
     }
+    // public function news_in_mod($mod_id){
+    //     $news = News::where('cat_id',$mod_id)->skip(0)->take(5)->get();
+    //     return $news;
+    // }
 }

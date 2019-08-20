@@ -9,9 +9,9 @@ class Chat extends Model
 {
     protected $table = 'chats';
     protected $primaryKey = 'chat_id';
-    protected $fillable = ['message', 'user_id'];
+    protected $fillable = ['user_chat_id', 'chat_content'];
 
     public function user() {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(UserChat::class, 'user_chat_id');
     }
 }

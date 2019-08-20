@@ -56,7 +56,5 @@ class User extends Authenticatable
         return array_get($this->status, $this->user_active, '[N\A]');
     }
 
-    public function chat() {
-        return $this->hasMany(Chat::class);
-    }
+
 }

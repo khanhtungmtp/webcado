@@ -1,4 +1,3 @@
-
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes Vue and other libraries. It is a great starting point when
@@ -21,7 +20,7 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-Vue.component('chat-layout', require('./components/ChatLayout.vue').default);
+Vue.component('chat', require('./components/ChatLayout.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -30,5 +29,19 @@ Vue.component('chat-layout', require('./components/ChatLayout.vue').default);
  */
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    data() {
+        return {
+            currentUserChat: {}
+        }
+    }, created() {
+        this.getCurrentUserChat()
+    },
+    methods: {
+        getCurrentUserChat() {
+            axios.get('/get-user-current-chat').then(response => {
+                this.currentUserChat = response.data
+            })
+        }
+    }
 });

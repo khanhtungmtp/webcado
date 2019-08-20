@@ -12,7 +12,7 @@
         Win2888 là công ty con của Tập Đoàn Shanghai Resort $ Casino có trụ sở tại Casino Shanghai Resort,
         Biên giới Việt Nam-Cambodia – Kinh doanh đa ngành nghề tại thị trường Đông Nam Á
         như: Bất động sản, du lịch, bán lẻ, ngân hàng, giải trí …</p>
-                        
+
 
                      </div><!-- Footer info content end -->
                 </div><!-- Col end -->
@@ -52,3 +52,6 @@
 
  </div><!-- Container end -->
 </div><!-- Copyright end -->
+
+<chat></chat>
+

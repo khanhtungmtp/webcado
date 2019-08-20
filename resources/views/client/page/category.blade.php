@@ -6,7 +6,7 @@
             <div class="col-lg-8 col-md-12">
 
                 <div class="block category-listing category-style2">
-                    <h3 class="block-title"><span>Technology</span></h3>
+                    <h3 class="block-title"><span>{{ $category->cat_name }}</span></h3>
 
                     <!-- <ul class="subCategory unstyled">
                         <li><a href="#">Robotics</a></li>

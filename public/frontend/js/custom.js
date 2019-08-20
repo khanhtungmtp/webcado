@@ -28,7 +28,6 @@ jQuery(function($) {
 	 });
 
 
-
   	/* ----------------------------------------------------------- */
   	/*  Owl Carousel
   	/* ----------------------------------------------------------- */
@@ -208,6 +207,53 @@ jQuery(function($) {
 		return false;
 
 	});
+    /* ----------------------------------------------------------- */
+    /*  Comment
+    /* ----------------------------------------------------------- */
+    $('.form-comment').submit(function(e){
+        e.preventDefault();
+        var email = $(this).find('input[name="comment_author_email"]').val();
+        var token = $(this).find('input[name="_token"]').val();
+        var id = $(this).find('input[name="post_id"]').val();
+        var content = $(this).find('textarea[name="comment_content"]').val();
+
+        if(!email || !content) {
+            $('.alert').html('Điền thiếu thông tin');
+            return;
+        }
+
+        var html = '<div class="well"><i><b>'+ email +'</b></i><span>&nbsp;&nbsp;'+ content +'</span> '
+        $('.comment-container').append(html);
+
+        $.ajax({
+            url: 'chi-tiet-bai-viet/' + id,
+            type: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': token
+            },
+            data: {
+                'comment_author_email': email,
+                'comment_content': content,
+                'new_id': id
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        });
+    });
+    /* ----------------------------------------------------------- */
+	/*  Load reply_comment
+	/* ----------------------------------------------------------- */
+        $(document).ready(function(){
+
+            $(".reply_btn").click(function () {
+              $(this).parent().parent().children('.reply-form').show();
+            });
+            $(".cancel_btn").click(function(){
+              $(this).parent().parent().hide();
+            });
+
+        });
 
 
 	/* ----------------------------------------------------------- */
@@ -232,6 +278,7 @@ jQuery(function($) {
 		});
 
 		$('#back-to-top').tooltip('hide');
+
 
 
 });

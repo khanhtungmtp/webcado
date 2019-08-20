@@ -6,7 +6,7 @@
             <div class="col-lg-8 col-md-12">
                 <div class="single-post">
                     <div class="post-media post-featured-image">
-                        <img src="frontend/images/news/lifestyle/food1.jpg" class="img-fluid" alt="">
+                        <img src="{{ pare_url_file($new->new_image, 'news') }}" style="width:700px; height:500px" class="img-fluid" alt="">
                     </div>
                     <div class="post-title-area">
                         <a class="post-cat" href="#">Food</a>
@@ -84,16 +84,16 @@
                         <div class="item">
                             <div class="post-block-style clearfix">
                                 <div class="post-thumb">
-                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel5.jpg" alt="" /></a>
+                                    <a href="#"><img class="img-fluid" src="{{ pare_url_file($new_t->new_image, 'news') }}" alt="" style="height:200px;" /></a>
                                 </div>
-                                <a class="post-cat" href="#">Health</a>
+
                                 <div class="post-content">
                                     <h2 class="post-title title-medium">
                                         <a href="{{route('detail',$new_t->new_id)}}">{{ $new_t->new_title }}</a>
                                     </h2>
                                     <div class="post-meta">
-                                        <span class="post-author"><a href="#">John Doe</a></span>
-                                        <span class="post-date">Feb 19, 2017</span>
+
+                                        <span class="post-date">Ngày đăng: {{ $new_t->created_at }}</span>
                                     </div>
                                 </div>
                                 <!-- Post content end -->
@@ -110,84 +110,84 @@
                 <div class="row">
                      <div class="col-md-8 col-md-offset-2">
                         <div class="panel panel-default">
-                            <div class="panel-heading">Comments</div>
+                            <div class="panel-heading">Comments:</div>
 
-                            <div class="panel-body comment-container" >
+                            <ul class="comments-list" style="list-style: none;">
 
-                                @foreach($comments as $comment)
-                                    <div class="well">
-                                        <i><b> {{ $comment->name }} </b></i>&nbsp;&nbsp;
-                                        <span> {{ $comment->comment }} </span>
-                                        <div style="margin-left:10px;">
-                                            <a style="cursor: pointer;" cid="{{ $comment->id }}" name_a="{{ Auth::user()->name }}" token="{{ csrf_token() }}" class="reply">Reply</a>&nbsp;
-                                            <a style="cursor: pointer;"  class="delete-comment" token="{{ csrf_token() }}" comment-did="{{ $comment->id }}" >Delete</a>
-                                            <div class="reply-form">
+                                <!-- Comments-list li end -->
+                                <div class="panel-body comment-container" >
 
-                                                <!-- Dynamic Reply form -->
+                                   @foreach($comment as $comm)
 
-                                            </div>
-                                            @foreach($comment->replies as $rep)
-                                                 @if($comment->id === $rep->comment_id)
-                                                    <div class="well">
-                                                        <i><b> {{ $rep->name }} </b></i>&nbsp;&nbsp;
-                                                        <span> {{ $rep->reply }} </span>
-                                                        <div style="margin-left:10px;">
-                                                            <a rname="{{ Auth::user()->name }}" rid="{{ $comment->id }}" style="cursor: pointer;" class="reply-to-reply" token="{{ csrf_token() }}">Reply</a>&nbsp;<a did="{{ $rep->id }}" class="delete-reply" token="{{ csrf_token() }}" >Delete</a>
-                                                        </div>
-                                                        <div class="reply-to-reply-form">
+                                       <div class="well">
+                                           <i><b> {{ $comm->comment_author_email }} </b></i>&nbsp;&nbsp;
+                                           <span> {{ $comm->comment_content }} </span>
+                                           <!-- <div style="margin-left:10px;">
+                                               <a style="cursor: pointer;" cid="{{ $comm->comment_id }}" name_a="{{ $comm->comment_author_email }}" token="{{ csrf_token() }}" class="reply">Reply</a>
 
-                                                            <!-- Dynamic Reply form -->
 
-                                                        </div>
+                                        </div> -->
+                                        <section class="comment-block">
+                                             <div class="comment-title">
+                                                 <button class="reply_btn" >Reply</button>
+                                             </div>
+                                             <form method="POST" action="" class="reply-form" type="hidden" >
+                                                 <input name="_method" type="hidden" value="PUT"></input>
+                                                 <textarea name="body" cols="50" rows="10"></textarea>
+                                                 <div class="button-group">
+                                                     <input type="submit" value="Post Comment"></input>
+                                                     <input type="button" class="cancel_btn" value="Cancel"></input>
+                                                 </div>
+                                             </form>
+                                         </section>
+                                       </div>
 
-                                                    </div>
-                                                @endif
-                                            @endforeach
 
-                                        </div>
-                                    </div>
-                                @endforeach
+                                   @endforeach
 
-                            </div>
+                               </div>
+                                <!-- Comments-list li end -->
+                            </ul>
                         </div>
                     </div>
                 </div>
+
                 <!-- Post comment end -->
                 <div class="comments-form">
                     <h3 class="title-normal">Nhập để bình luận</h3>
-                    <form role="form" action="{{route('comment')}}" method="post">
+                    <p class="alert"></p>
+                    <form class="form-comment" role="form" method="post" action="">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                        <!-- @if(Session::has('thanhcong'))
-						<div class="alert alert-success">{{Session::get('thanhcong')}}</div>
-						@endif -->
+                        <input type="hidden" name="post_id" value="{{$id}}">
 
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <input class="form-control required-field" name="comment_author_email" type="email" placeholder="Nhập email" name="email" required >
-                                </div>
-                            </div>
-                            <!-- Col end -->
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group">
-                                    <textarea class="form-control required-field" name="comments_content" id="message" placeholder="Your Comment" rows="10" required></textarea>
-                                </div>
-                            </div>
-                            <!-- Col end -->
-                        </div>
-                        <!-- Form row end -->
-                        <div class="clearfix">
-                            <button class="comments-btn btn btn-primary" type="submit">Bình luận</button>
-                        </div>
-                    </form>
+
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <input class="form-control required-field" name="comment_author_email" type="email" placeholder="Nhập email" name="email" required >
+                          </div>
+                      </div>
+                      <!-- Col end -->
+                  </div>
+                  <div class="row">
+                      <div class="col-md-12">
+                          <div class="form-group">
+                              <textarea class="form-control required-field" name="comment_content" id="message" placeholder="Your Comment" rows="10" required></textarea>
+                          </div>
+                      </div>
+                      <!-- Col end -->
+                  </div>
+                  <!-- Form row end -->
+                  <div class="clearfix">
+                      <button class="comments-btn btn btn-primary" type="submit">Bình luận</button>
+                  </div>
+              </form>
                     <!-- Form end -->
                 </div>
                 <!-- Comments form end -->
             </div>
             <!-- Content Col end -->
-            @include('layout.sidebar');
+            @include('layout.sidebar')
             <!-- Sidebar Col end -->
         </div>
         <!-- Row end -->

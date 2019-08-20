@@ -19,7 +19,6 @@
                         @endforeach
                     @endif
                     <!-- Item 1 end -->
-                   
                 </div>
                 <!-- Carousel end -->
             </div>
@@ -42,7 +41,7 @@
                                     <div class="post-content">
                                         <a class="post-cat" >{{ $new->category->cat_name }}</a>
                                         <h2 class="post-title title-extra-large">
-                                            <a href="{{ route('') }}">{{ $new->new_title }}</a>
+                                            <a href="{{route('detail',$new->new_id)}}">{{ $new->new_title }}</a>
                                         </h2>
                                         <span class="post-date">{{ $new->created_at }}</span>
                                     </div>
@@ -52,10 +51,6 @@
                             <!-- Item 1 end -->
                         @endforeach
                     @endif
-
-
-
-                   
                 </div>
                 <!-- Featured owl carousel end-->
             </div>
@@ -77,7 +72,6 @@
                         </div>
                         <!-- Post Overaly end -->
                     </div>
-                   
                     <!-- Col end -->
                 </div>
                 <!-- Row end -->
@@ -95,30 +89,20 @@
             <div class="col-lg-8 col-md-12">
                 <!--- Featured Tab startet -->
                 <div class="featured-tab color-blue">
-                    <h3 class="block-title"><span>Xổ số</span></h3>
-                    <ul class="nav nav-tabs">
-                        <li>
-                            <a class="active animated fadeIn" href="#tab_a" data-toggle="tab">
-                            <span class="tab-head">
-                            <span class="tab-text-title">Miền Bắc</span>
-                            </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="animated fadeIn" href="#tab_b" data-toggle="tab">
-                            <span class="tab-head">
-                            <span class="tab-text-title">Miền Trung</span>
-                            </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="animated fadeIn" href="#tab_c" data-toggle="tab">
-                            <span class="tab-head">
-                            <span class="tab-text-title">Miền Nam</span>
-                            </span>
-                            </a>
-                        </li>
-                    </ul>
+                    <h3 class="block-title"><span>{{$menus[0]}}</span></h3>
+                      <ul class="nav nav-tabs">
+                        @for($i = 1; $i < count($menus); $i++)
+                        @if($menus[$i])
+                          <li>
+                              <a class="active animated" href="#tab_a" data-toggle="tab">
+                              <span class="tab-head">
+                              <span class="tab-text-title">{{$menus[$i]}}</span>
+                              </span>
+                              </a>
+                          </li>
+                        @endif
+                        @endfor
+                      </ul>
                     <div class="tab-content">
                         <div class="tab-pane active animated fadeInRight" id="tab_a">
                             <div class="row">
@@ -126,19 +110,19 @@
                                     <div class="post-block-style clearfix">
                                         <div class="post-thumb">
                                             <a href="#">
-                                            <img class="img-fluid" src="frontend/images/news/tech/gadget1.jpg" alt="" />
+                                            <img class="img-fluid" src="{{pare_url_file($posts[0]['new_image'],'news')}}" alt="" />
                                             </a>
                                         </div>
                                         <a class="post-cat" href="#">Xổ số</a>
                                         <div class="post-content">
                                             <h2 class="post-title">
-                                                <a href="#">Kết quả xổ số hôm nay</a>
+                                                <a href="{{route('detail',$posts[0]->new_id)}}">{{$posts[0]['new_title']}}</a>
                                             </h2>
                                             <div class="post-meta">
                                                 <span class="post-author"><a href="#">Admin</a></span>
-                                                <span class="post-date">13 tháng 08, 2019</span>
+                                                <span class="post-date">{{$posts[0]['created_at']}}</span>
                                             </div>
-                                            <p>abcdefgh</p>
+                                            <p>{{$posts[0]['new_description']}}</p>
                                         </div>
                                         <!-- Post content end -->
                                     </div>
@@ -148,20 +132,22 @@
                                 <div class="col-md-6">
                                     <div class="list-post-block">
                                         <ul class="list-post">
+                                          @for($i = 1 ; $i < count($posts); $i++)
+                                          @if($i)
                                             <li class="clearfix">
                                                 <div class="post-block-style post-float clearfix">
                                                     <div class="post-thumb">
                                                         <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget2.jpg" alt="" />
+                                                        <img class="img-fluid" src="{{pare_url_file($posts[$i]['new_image'],'news')}}" height="150px" alt="" />
                                                         </a>
                                                     </div>
                                                     <!-- Post thumb end -->
                                                     <div class="post-content">
                                                         <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 12/08/2019</a>
+                                                            <a href="{{route('detail',$posts[$i]->new_id)}}">{{$posts[$i]['new_title']}}</a>
                                                         </h2>
                                                         <div class="post-meta">
-                                                            <span class="post-date">12 tháng 8, 2019</span>
+                                                            <span class="post-date">{{$posts[$i]['created_at']}}</span>
                                                         </div>
                                                     </div>
                                                     <!-- Post content end -->
@@ -169,48 +155,8 @@
                                                 <!-- Post block style end -->
                                             </li>
                                             <!-- Li 1 end -->
-                                            <li class="clearfix">
-                                                <div class="post-block-style post-float clearfix">
-                                                    <div class="post-thumb">
-                                                        <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget3.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- Post thumb end -->
-                                                    <div class="post-content">
-                                                        <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 11/08/2019</a>
-                                                        </h2>
-                                                        <div class="post-meta">
-                                                            <span class="post-date">11 tháng 8, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Post content end -->
-                                                </div>
-                                                <!-- Post block style end -->
-                                            </li>
-                                            <!-- Li 2 end -->
-                                            <li class="clearfix">
-                                                <div class="post-block-style post-float clearfix">
-                                                    <div class="post-thumb">
-                                                        <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget4.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- Post thumb end -->
-                                                    <div class="post-content">
-                                                        <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 10/08/2019</a>
-                                                        </h2>
-                                                        <div class="post-meta">
-                                                            <span class="post-date">10 tháng 8, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Post content end -->
-                                                </div>
-                                                <!-- Post block style end -->
-                                            </li>
-                                            <!-- Li 3 end -->
+                                            @endif
+                                          @endfor
                                         </ul>
                                         <!-- List post end -->
                                     </div>
@@ -221,851 +167,136 @@
                             <!-- Tab pane Row 1 end -->
                         </div>
                         <!-- Tab pane 1 end -->
-                        <div class="tab-pane animated fadeInRight" id="tab_b">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="post-block-style clearfix">
-                                        <div class="post-thumb">
-                                            <a href="#">
-                                            <img class="img-fluid" src="frontend/images/news/tech/game1.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <a class="post-cat" href="#">Xổ số</a>
-                                                                                        <div class="post-content">
-                                            <h2 class="post-title">
-                                                <a href="#">Kết quả xổ số hôm nay</a>
-                                            </h2>
-                                            <div class="post-meta">
-                                                <span class="post-author"><a href="#">Admin</a></span>
-                                                <span class="post-date">13 tháng 08, 2019</span>
-                                            </div>
-                                            <p>abcdefgh</p>
-                                        </div>
-                                        <!-- Post content end -->
-                                    </div>
-                                    <!-- Post Block style end -->
-                                </div>
-                                <!-- Col end -->
-                                <div class="col-md-6">
-                                    <div class="list-post-block">
-                                        <ul class="list-post">
-                                            <li class="clearfix">
-                                                <div class="post-block-style post-float clearfix">
-                                                    <div class="post-thumb">
-                                                        <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget2.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- Post thumb end -->
-                                                    <div class="post-content">
-                                                        <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 12/08/2019</a>
-                                                        </h2>
-                                                        <div class="post-meta">
-                                                            <span class="post-date">12 tháng 8, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Post content end -->
-                                                </div>
-                                                <!-- Post block style end -->
-                                            </li>
-                                            <!-- Li 1 end -->
-                                            <li class="clearfix">
-                                                <div class="post-block-style post-float clearfix">
-                                                    <div class="post-thumb">
-                                                        <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget3.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- Post thumb end -->
-                                                    <div class="post-content">
-                                                        <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 11/08/2019</a>
-                                                        </h2>
-                                                        <div class="post-meta">
-                                                            <span class="post-date">11 tháng 8, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Post content end -->
-                                                </div>
-                                                <!-- Post block style end -->
-                                            </li>
-                                            <!-- Li 2 end -->
-                                            <li class="clearfix">
-                                                <div class="post-block-style post-float clearfix">
-                                                    <div class="post-thumb">
-                                                        <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget4.jpg" alt="" />
-                                                        </a>
-                                                    </div>
-                                                    <!-- Post thumb end -->
-                                                    <div class="post-content">
-                                                        <h2 class="post-title title-small">
-                                                            <a href="#">Kết quả xổ số ngày 10/08/2019</a>
-                                                        </h2>
-                                                        <div class="post-meta">
-                                                            <span class="post-date">10 tháng 8, 2019</span>
-                                                        </div>
-                                                    </div>
-                                                    <!-- Post content end -->
-                                                </div>
-                                                <!-- Post block style end -->
-                                            </li>
-                                            <!-- Li 3 end -->
-                                        </ul>
-                                        <!-- List post end -->
-                                    </div>
-                                    <!-- List post block end -->
-                                </div>
-                                <!-- List post Col end -->
-                            </div>
-                            <!-- Tab pane Row 2 end -->
-                        </div>
-                        <!-- Tab pane 2 end -->
-                        <div class="tab-pane animated fadeInLeft" id="tab_c">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="post-block-style clearfix">
-                                        <div class="post-thumb">
-                                            <a href="#">
-                                            <img class="img-fluid" src="frontend/images/news/tech/robot1.jpg" alt="" />
-                                            </a>
-                                        </div>
-                                        <a class="post-cat" href="#">Xổ số</a>
-                                                                                        <div class="post-content">
-                                            <h2 class="post-title">
-                                                <a href="#">Kết quả xổ số hôm nay</a>
-                                            </h2>
-                                            <div class="post-meta">
-                                                <span class="post-author"><a href="#">Admin</a></span>
-                                                <span class="post-date">13 tháng 08, 2019</span>
-                                            </div>
-                                            <p>abcdefgh</p>
-                                        </div>
-                                        <!-- Post content end -->
-                                    </div>
-                                    <!-- Post Block style end -->
-                                </div>
-                                <!-- Col end -->
-                                                                        <div class="col-md-6">
-                                                                                <div class="list-post-block">
-                                                                                        <ul class="list-post">
-                                                                                                <li class="clearfix">
-                                                                                                        <div class="post-block-style post-float clearfix">
-                                                                                                                <div class="post-thumb">
-                                                                                                                        <a href="#">
-                                                                                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget2.jpg" alt="" />
-                                                                                                                        </a>
-                                                                                                                </div>
-                                                                                                                <!-- Post thumb end -->
-                                                                                                                <div class="post-content">
-                                                                                                                        <h2 class="post-title title-small">
-                                                                                                                                <a href="#">Kết quả xổ số ngày 12/08/2019</a>
-                                                                                                                        </h2>
-                                                                                                                        <div class="post-meta">
-                                                                                                                                <span class="post-date">12 tháng 8, 2019</span>
-                                                                                                                        </div>
-                                                                                                                </div>
-                                                                                                                <!-- Post content end -->
-                                                                                                        </div>
-                                                                                                        <!-- Post block style end -->
-                                                                                                </li>
-                                                                                                <!-- Li 1 end -->
-                                                                                                <li class="clearfix">
-                                                                                                        <div class="post-block-style post-float clearfix">
-                                                                                                                <div class="post-thumb">
-                                                                                                                        <a href="#">
-                                                                                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget3.jpg" alt="" />
-                                                                                                                        </a>
-                                                                                                                </div>
-                                                                                                                <!-- Post thumb end -->
-                                                                                                                <div class="post-content">
-                                                                                                                        <h2 class="post-title title-small">
-                                                                                                                                <a href="#">Kết quả xổ số ngày 11/08/2019</a>
-                                                                                                                        </h2>
-                                                                                                                        <div class="post-meta">
-                                                                                                                                <span class="post-date">11 tháng 8, 2019</span>
-                                                                                                                        </div>
-                                                                                                                </div>
-                                                                                                                <!-- Post content end -->
-                                                                                                        </div>
-                                                                                                        <!-- Post block style end -->
-                                                                                                </li>
-                                                                                                <!-- Li 2 end -->
-                                                                                                <li class="clearfix">
-                                                                                                        <div class="post-block-style post-float clearfix">
-                                                                                                                <div class="post-thumb">
-                                                                                                                        <a href="#">
-                                                                                                                        <img class="img-fluid" src="frontend/images/news/tech/gadget4.jpg" alt="" />
-                                                                                                                        </a>
-                                                                                                                </div>
-                                                                                                                <!-- Post thumb end -->
-                                                                                                                <div class="post-content">
-                                                                                                                        <h2 class="post-title title-small">
-                                                                                                                                <a href="#">Kết quả xổ số ngày 10/08/2019</a>
-                                                                                                                        </h2>
-                                                                                                                        <div class="post-meta">
-                                                                                                                                <span class="post-date">10 tháng 8, 2019</span>
-                                                                                                                        </div>
-                                                                                                                </div>
-                                                                                                                <!-- Post content end -->
-                                                                                                        </div>
-                                                                                                        <!-- Post block style end -->
-                                                                                                </li>
-                                                                                                <!-- Li 3 end -->
-                                                                                        </ul>
-                                                                                        <!-- List post end -->
-                                                                                </div>
-                                                                                <!-- List post block end -->
-                                                                        </div>
-                                <!-- List post Col end -->
-                            </div>
-                            <!-- Tab pane Row 3 end -->
-                        </div>
-                        <!-- Tab pane 3 end -->
                     </div>
                     <!-- tab content -->
                 </div>
                 <!-- Technology Tab end -->
                 <div class="gap-40"></div>
-                                        <div class="block color-orange">
-                                            <h3 class="block-title"><span>Soi kèo - Nhận định bóng đá</span></h3>
 
-                                            <div class="row">
-                                                <div class="col-md-6">
-                                                    <div class="post-overaly-style clearfix">
-                                                        <div class="post-thumb">
-                                                            <a href="#">
-                                                                <img class="img-fluid" src="frontend/images/news/lifestyle/travel1.jpg" alt="" />
-                                                            </a>
-                                                        </div>
+                <div class="block color-orange">
+                    <h3 class="block-title"><span>{{$menus_soikeo[0]}}</span></h3>
+                    <div class="row">
+                      @for($i=1 ; $i < count($menus_soikeo) ;$i++)
+                      @if($i)
+                        <div class="col-md-6">
+                            <div class="post-overaly-style clearfix">
+                                <div class="post-thumb">
+                                    <a href="#">
+                                        <img class="img-fluid" src="frontend/images/news/lifestyle/travel1.jpg" alt="" />
+                                    </a>
+                                </div>
 
-                                                        <div class="post-content">
-                                                            <a class="post-cat" href="#">Soi kèo</a>
-                                                            <h2 class="post-title">
-                                                                <a href="#">Soi kèo tài xỉu trận Ajax vs PAOK ,01h30 ngày 14/08(Vòng sơ loại C1)...</a>
-                                                            </h2>
-                                                            <div class="post-meta">
-                                                                <span class="post-date">13 tháng 8, 2019</span>
-                                                            </div>
-                                                        </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article end -->
+                                <div class="post-content">
+                                    <a class="post-cat" href="#">{{$menus_soikeo[$i]}}</a>
+                                    <h2 class="post-title">
+                                        <a href="#">{{$posts_soikeo[1]['new_title']}}</a>
+                                    </h2>
+                                    <div class="post-meta">
+                                        <span class="post-date">13 tháng 8, 2019</span>
+                                    </div>
+                                </div><!-- Post content end -->
+                            </div><!-- Post Overaly Article end -->
 
-                                                    <div class="list-post-block">
-                                                        <ul class="list-post">
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/food1.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Soi kèo</a>
-                                                                    </div><!-- Post thumb end -->
+                            <div class="list-post-block">
+                                <ul class="list-post">
+                                  @if($posts_soikeo)
+                                  @foreach($posts_soikeo as $posts)
+                                    <li class="clearfix">
+                                        <div class="post-block-style post-float clearfix">
+                                            <div class="post-thumb">
+                                                <a href="#">
+                                                    <img class="img-fluid" src="frontend/images/news/lifestyle/food1.jpg" alt="" />
+                                                </a>
+                                                <a class="post-cat" href="#">Soi kèo</a>
+                                            </div><!-- Post thumb end -->
 
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Soi kèo tài xỉu trận Dinamo Kyiv vs Club Brugge, 23h30 ngày 13/08 (Vòng sơ loại C1) </a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 1 end -->
+                                            <div class="post-content">
+                                                <h2 class="post-title title-small">
+                                                    <a href="#">{{$posts->new_title}} </a>
+                                                </h2>
+                                                <div class="post-meta">
+                                                    <span class="post-date">13 tháng 8, 2019</span>
+                                                </div>
+                                            </div><!-- Post content end -->
+                                        </div><!-- Post block style end -->
+                                    </li><!-- Li 1 end -->
+                                  @endforeach
+                                  @endif
+                                </ul><!-- List post end -->
+                            </div><!-- List post block end -->
+                        </div><!-- Col 1 end -->
+                      @endif
+                      @endfor
+                    </div><!-- Row end -->
+                </div><!-- Block Lifestyle end -->
 
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/health1.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Soi kèo</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Soi kèo tài xỉu trận Rosenborg vs Maribor, 00h00 ngày 14/08 (Vòng sơ loại C1)…</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 2 end -->
-
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/travel2.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Soi kèo</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Soi kèo tài xỉu trận Hansa Rostock vs Stuttgart, 23h30 ngày 12/08 (Cúp QG Đức)  …</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 3 end -->
-
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/architecture2.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Soi kèo</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Soi kèo tài xỉu trận Cottbus vs Bayern Munich, 01h45 ngày 13/08 (Cúp QG Đức)  …</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 4 end -->
-
-                                                        </ul><!-- List post end -->
-                                                    </div><!-- List post block end -->
-                                                </div><!-- Col 1 end -->
-                                                <div class="col-md-6">
-                                                    <div class="post-overaly-style last clearfix">
-                                                        <div class="post-thumb">
-                                                            <a href="#">
-                                                                <img class="img-fluid" src="frontend/images/news/lifestyle/architecture3.jpg" alt="" />
-                                                            </a>
-                                                        </div>
-
-                                                        <div class="post-content">
-                                                            <a class="post-cat" href="#">Nhận định</a>
-                                                            <h2 class="post-title">
-                                                                <a href="#">Kobenhavn vs Crvena Zvezda, 01h00 ngày 14/08</a>
-                                                            </h2>
-                                                            <div class="post-meta">
-                                                                <span class="post-date">13 tháng 8, 2019</span>
-                                                            </div>
-                                                        </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article end -->
-
-                                                    <div class="list-post-block">
-                                                        <ul class="list-post">
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/health2.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Nhận định</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Ajax vs PAOK Saloniki, 01h30 ngày 14/8</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 1 end -->
-
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/food2.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Nhận định</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Porto vs Krasnodar, 02h00 ngày 14/8…</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 2 end -->
-
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/architecture1.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Nhận định</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Rosenborg vs Maribor, 00h00 ngày 14/8…</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 3 end -->
-
-                                                            <li class="clearfix">
-                                                                <div class="post-block-style post-float clearfix">
-                                                                    <div class="post-thumb">
-                                                                        <a href="#">
-                                                                            <img class="img-fluid" src="frontend/images/news/lifestyle/travel5.jpg" alt="" />
-                                                                        </a>
-                                                                        <a class="post-cat" href="#">Nhận định</a>
-                                                                    </div><!-- Post thumb end -->
-
-                                                                    <div class="post-content">
-                                                                        <h2 class="post-title title-small">
-                                                                            <a href="#">Dynamo Kyiv vs Club Brugge, 00h30 ngày 14/8 …</a>
-                                                                        </h2>
-                                                                        <div class="post-meta">
-                                                                            <span class="post-date">13 tháng 8, 2019</span>
-                                                                        </div>
-                                                                    </div><!-- Post content end -->
-                                                                </div><!-- Post block style end -->
-                                                            </li><!-- Li 4 end -->
-
-                                                        </ul><!-- List post end -->
-                                                    </div><!-- List post block end -->
-                                                </div><!-- Col 2 end -->
-                                            </div><!-- Row end -->
-                                        </div><!-- Block Lifestyle end -->
                 <div class="gap-50"></div>
 
+                <div class="latest-news block color-red">
+                  <h3 class="block-title"><span>{{$menus_casino[0]}}</span></h3>
 
-                                        <div class="latest-news block color-red">
-                                            <h3 class="block-title"><span>Game bài online</span></h3>
+                  <div id="latest-news-slide" class="owl-carousel owl-theme latest-news-slide">
+                    @foreach($posts_casino as $post_casino)
+                      <div class="item">
+                          <ul class="list-post">
+                                <li class="clearfix">
+                                    <div class="post-block-style clearfix">
+                                        <div class="post-thumb">
+                                            <a href="{{route('detail',$post_casino->new_id)}}"><img class="img-fluid" src="{{pare_url_file($post_casino->new_image,'news')}}" alt="" /></a>
+                                        </div>
+                                        <a class="post-cat" href="#">Game</a>
+                                        <div class="post-content">
+                                            <h2 class="post-title title-medium">
+                                                <a href="{{route('detail',$post_casino->new_id)}}">{{$post_casino->new_title}}</a>
+                                            </h2>
+                                            <div class="post-meta">
+                                                <span class="post-author"><a href="#">Admin</a></span>
+                                                <span class="post-date">{{$post_casino->created_at}}</span>
+                                            </div>
+                                        </div>
+                                        <!-- Post content end -->
+                                    </div>
+                                    <!-- Post Block style end -->
+                                </li>
+                                <!-- Li end -->
 
-                                            <div id="latest-news-slide" class="owl-carousel owl-theme latest-news-slide">
-                                                <div class="item">
-                                                    <ul class="list-post">
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/health5.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">LÔ ĐỀ ONLINE...</a>
-                                                                    </h2>
-                                                                    <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
+                                <div class="gap-30"></div>
 
-                                                        <div class="gap-30"></div>
+                                <li class="clearfix">
+                                  <div class="post-block-style clearfix">
+                                      <div class="post-thumb">
+                                          <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel4.jpg" alt="" /></a>
+                                      </div>
+                                      <a class="post-cat" href="#">Game</a>
+                                      <div class="post-content">
+                                          <h2 class="post-title title-medium">
+                                                                          <a href="#">CÁ CƯỢC THỂ THAO…</a>
+                                                                      </h2>
+                                          <div class="post-meta">
+                                              <span class="post-author"><a href="#">Admin</a></span>
+                                              <span class="post-date">15 tháng 8 , 2019</span>
+                                          </div>
+                                      </div>
+                                      <!-- Post content end -->
+                                  </div>
+                                  <!-- Post Block style end -->
+                              </li>
+                                <!-- Li end -->
 
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel4.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">CÁ CƯỢC THỂ THAO…</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-                                                    </ul><!-- List post 1 end -->
+                          </ul>
+                          <!-- List post 1 end -->
 
-                                                </div><!-- Item 1 end -->
-
-                                                <div class="item">
-
-                                                    <ul class="list-post">
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/travel5.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">ĐÁNH BÀI ONLINE…</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-
-                                                        <div class="gap-30"></div>
-
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/health4.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">CÁ CƯỢC THỂ THAO...</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-                                                    </ul><!-- List post 2 end -->
-
-                                                </div><!-- Item 2 end -->
-
-                                                <div class="item">
-
-                                                    <ul class="list-post">
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/tech/gadget2.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">ĐÁNH BÀI ONLINE...</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-
-                                                        <div class="gap-30"></div>
-
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#"><img class="img-fluid" src="frontend/images/news/lifestyle/architecture3.jpg" alt="" /></a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">LÔ ĐỀ ONLINE…</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-                                                    </ul><!-- List post 3 end -->
-
-                                                </div><!-- Item 3 end -->
-
-                                                <div class="item">
-                                                    <ul class="list-post">
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#">
-                                                                        <img class="img-fluid" src="frontend/images/news/lifestyle/food3.jpg" alt="" />
-                                                                    </a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Game</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">CÁ CƯỢC THỂ THAO…</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-
-                                                        <div class="gap-30"></div>
-
-                                                        <li class="clearfix">
-                                                            <div class="post-block-style clearfix">
-                                                                <div class="post-thumb">
-                                                                    <a href="#">
-                                                                        <img class="img-fluid" src="frontend/images/news/tech/game1.jpg" alt="" />
-                                                                    </a>
-                                                                </div>
-                                                                <a class="post-cat" href="#">Games</a>
-                                                                <div class="post-content">
-                                                                    <h2 class="post-title title-medium">
-                                                                        <a href="#">ĐÁNH BÀI ONLINE...</a>
-                                                                    </h2>
-                              <div class="post-meta">
-                                                                        <span class="post-author"><a href="#">Admin</a></span>
-                                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                                    </div>
-                                                                </div><!-- Post content end -->
-                                                            </div><!-- Post Block style end -->
-                                                        </li><!-- Li end -->
-                                                    </ul><!-- List post 4 end -->
-
-                                                </div><!-- Item 4 end -->
-                                            </div><!-- Latest News owl carousel end-->
-                                        </div><!--- Latest news end -->
+                      </div>
+                    @endforeach
+                      <!-- Item 1 end -->
+                  </div>
+                  <!-- Latest News owl carousel end-->
+                </div>
+                <!--- Latest news end -->
             </div>
             <!-- Content Col end -->
-                                <div class="col-lg-4 col-md-12">
-                                    <div class="sidebar sidebar-right">
-                                        <div class="widget">
-                                            <h3 class="block-title"><span>Theo dõi chúng tôi</span></h3>
-
-                                            <ul class="social-icon">
-                                                <li><a href="#" target="_blank"><i class="fa fa-rss"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-vimeo-square"></i></a></li>
-                                                <li><a href="#" target="_blank"><i class="fa fa-youtube"></i></a></li>
-                                            </ul>
-                                        </div><!-- Widget Social end -->
-
-                                        <div class="widget m-bottom-0">
-                                            <h3 class="block-title"><span>Đăng ký nhận ngay khuyến mãi Hot</span></h3>
-                                            <div class="ts-newsletter">
-                                                <div class="newsletter-introtext">
-                                                    <p>Đăng ký ngay để nhận được khuyễn mãi Hot hàng ngày lên đến 30%!</p>
-                                                </div>
-
-                                                <div class="newsletter-form">
-                                                    <form action="#" method="post">
-                                                        <div class="form-group">
-                                                            <input type="email" name="email" id="newsletter-form-email" class="form-control form-control-lg" placeholder="E-mail" autocomplete="off">
-                                                            <button class="btn btn-primary">Đăng ký</button>
-                                                        </div>
-                                                    </form>
-                                                </div>
-                                            </div><!-- Newsletter end -->
-                                        </div><!-- Newsletter widget end -->
-
-                                        <div class="widget color-default">
-                                            <h3 class="block-title"><span>Tin nổi bật</span></h3>
-
-                                            <div class="post-overaly-style clearfix">
-                                                <div class="post-thumb">
-                                                    <a href="#">
-                                                        <img class="img-fluid" src="frontend/images/news/lifestyle/health4.jpg" alt="" />
-                                                    </a>
-                                                </div>
-
-                                                <div class="post-content">
-                                                    <a class="post-cat" href="#">Xổ số</a>
-                                                    <h2 class="post-title">
-                                                        <a href="#">Kết quả xổ số hôm nay…</a>
-                                                    </h2>
-                                                    <div class="post-meta">
-                                                        <span class="post-date">15 tháng 8 , 2019</span>
-                                                    </div>
-                                                </div><!-- Post content end -->
-                                            </div><!-- Post Overaly Article end -->
-
-
-                                            <div class="list-post-block">
-                                                <ul class="list-post">
-                                                    <li class="clearfix">
-                                                        <div class="post-block-style post-float clearfix">
-                                                            <div class="post-thumb">
-                                                                <a href="#">
-                                                                    <img class="img-fluid" src="frontend/images/news/tech/gadget3.jpg" alt="" />
-                                                                </a>
-                                                                <a class="post-cat" href="#">Games</a>
-                                                            </div><!-- Post thumb end -->
-
-                                                            <div class="post-content">
-                                                                <h2 class="post-title title-small">
-                                                                    <a href="#">LÔ ĐỀ ONLINE…</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                    <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                            </div><!-- Post content end -->
-                                                        </div><!-- Post block style end -->
-                                                    </li><!-- Li 1 end -->
-
-                                                    <li class="clearfix">
-                                                        <div class="post-block-style post-float clearfix">
-                                                            <div class="post-thumb">
-                                                                <a href="#">
-                                                                    <img class="img-fluid" src="frontend/images/news/lifestyle/travel5.jpg" alt="" />
-                                                                </a>
-                                                                <a class="post-cat" href="#">Soi kèo</a>
-                                                            </div><!-- Post thumb end -->
-
-                                                            <div class="post-content">
-                                                                <h2 class="post-title title-small">
-                                                                    <a href="#">Soi kèo tài xỉu trận Dinamo Kyiv vs Club Brugge, 23h30 ngày 13/08 (Vòng sơ loại C1)</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                    <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                            </div><!-- Post content end -->
-                                                        </div><!-- Post block style end -->
-                                                    </li><!-- Li 2 end -->
-
-                                                    <li class="clearfix">
-                                                        <div class="post-block-style post-float clearfix">
-                                                            <div class="post-thumb">
-                                                                <a href="#">
-                                                                    <img class="img-fluid" src="frontend/images/news/tech/robot5.jpg" alt="" />
-                                                                </a>
-                                                                <a class="post-cat" href="#">Nhận định</a>
-                                                            </div><!-- Post thumb end -->
-
-                                                            <div class="post-content">
-                                                                <h2 class="post-title title-small">
-                                                                    <a href="#">Kobenhavn vs Crvena Zvezda, 01h00 ngày 14/08</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                    <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                            </div><!-- Post content end -->
-                                                        </div><!-- Post block style end -->
-                                                    </li><!-- Li 3 end -->
-
-                                                    <li class="clearfix">
-                                                        <div class="post-block-style post-float clearfix">
-                                                            <div class="post-thumb">
-                                                                <a href="#">
-                                                                    <img class="img-fluid" src="frontend/images/news/lifestyle/food1.jpg" alt="" />
-                                                                </a>
-                                                                <a class="post-cat" href="#">Soi kèo</a>
-                                                            </div><!-- Post thumb end -->
-
-                                                            <div class="post-content">
-                                                                <h2 class="post-title title-small">
-                                                                    <a href="#">Soi kèo tài xỉu trận Cottbus vs Bayern Munich, 01h45 ngày 13/08 (Cúp QG Đức)…</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                    <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                            </div><!-- Post content end -->
-                                                        </div><!-- Post block style end -->
-                                                    </li><!-- Li 4 end -->
-
-                                                </ul><!-- List post end -->
-                                            </div><!-- List post block end -->
-
-                                        </div><!-- Popular news widget end -->
-
-                                        <div class="widget text-center">
-                                            <img class="banner img-fluid" src="frontend/images/banner-ads/ad-sidebar.png" alt="" />
-                                        </div><!-- Sidebar Ad end -->
-
-                                        <div class="widget color-default m-bottom-0">
-                                            <h3 class="block-title"><span>Tin xem nhiều nhất</span></h3>
-
-                                            <div id="post-slide" class="owl-carousel owl-theme post-slide">
-                                                <div class="item">
-                                                    <div class="post-overaly-style text-center clearfix">
-                                                         <div class="post-thumb">
-                                                                <a href="#">
-                                                                     <img class="img-fluid" src="frontend/images/news/tech/gadget1.jpg" alt="" />
-                                                                </a>
-                                                         </div><!-- Post thumb end -->
-
-                                                         <div class="post-content">
-                                                                <a class="post-cat" href="#">Soi kèo</a>
-                                                                <h2 class="post-title">
-                                                                     <a href="#">Soi kèo tài xỉu trận Cottbus vs Bayern Munich, 01h45 ngày 13/08 (Cúp QG Đức)…</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                     <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                         </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article 1 end -->
-
-                                                    <div class="post-overaly-style text-center clearfix">
-                                                         <div class="post-thumb">
-                                                                <a href="#">
-                                                                     <img class="img-fluid" src="frontend/images/news/video/video1.jpg" alt="" />
-                                                                </a>
-                                                         </div><!-- Post thumb end -->
-
-                                                         <div class="post-content">
-                                                                <a class="post-cat" href="#">Games</a>
-                                                                <h2 class="post-title">
-                                                                     <a href="#">ĐÁNH BÀI ONLINE……</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                     <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                         </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article 2 end -->
-
-                                                </div><!-- Item 1 end -->
-
-                                                <div class="item">
-
-                                                    <div class="post-overaly-style text-center clearfix">
-                                                         <div class="post-thumb">
-                                                                <a href="#">
-                                                                     <img class="img-fluid" src="frontend/images/news/lifestyle/health5.jpg" alt="" />
-                                                                </a>
-                                                         </div><!-- Post thumb end -->
-
-                                                         <div class="post-content">
-                                                                <a class="post-cat" href="#">Nhận định</a>
-                                                                <h2 class="post-title">
-                                                                     <a href="#">Rosenborg vs Maribor, 00h00 ngày 14/8…</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                     <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                         </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article 3 end -->
-
-                                                    <div class="post-overaly-style text-center clearfix">
-                                                         <div class="post-thumb">
-                                                                <a href="#">
-                                                                     <img class="img-fluid" src="frontend/images/news/tech/robot1.jpg" alt="" />
-                                                                </a>
-                                                         </div><!-- Post thumb end -->
-
-                                                         <div class="post-content">
-                                                                <a class="post-cat" href="#">Xổ số</a>
-                                                                <h2 class="post-title">
-                                                                     <a href="#">Kết quả xổ số hôm nay</a>
-                                                                </h2>
-                                                                <div class="post-meta">
-                                                                     <span class="post-date">15 tháng 8 , 2019</span>
-                                                                </div>
-                                                         </div><!-- Post content end -->
-                                                    </div><!-- Post Overaly Article 4 end -->
-
-                                                </div><!-- Item 2 end -->
-
-                                            </div><!-- Post slide carousel end -->
-
-                                        </div><!-- Trending news end -->
-
-                                    </div><!-- Sidebar right end -->
-                                </div><!-- Sidebar Col end -->
-            </div>
+            @include('layout.sidebar')
+        </div>
         <!-- Row end -->
     </div>
     <!-- Container end -->
@@ -1075,8 +306,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <img class="img-fluid" src="frontend/images/banner-ads/ad-content-one.jpg" alt="" />
+              @foreach($adverts_bottom as $key => $ads_bottom)
+                <img class="img-fluid" src="{{ pare_url_file($ads_bottom->img, 'images_bn') }}" alt="" />
+              @endforeach
+              <?php $key = $key +1; ?>
             </div><!-- Col end -->
+
         </div><!-- Row end -->
     </div><!-- Container end -->
 </section><!-- Ad content top end -->
@@ -1155,4 +390,38 @@
     </div><!-- Container end -->
 </section><!-- 2nd block end -->
 
+{{--<div class="chatbox chatbox--tray chatbox--empty">--}}
+{{--    <div class="chatbox__title">--}}
+{{--        <h5>Hỗ trợ trực tuyến</h5>--}}
+{{--        <button class="chatbox__title__tray">--}}
+{{--            <span></span>--}}
+{{--        </button>--}}
+
+{{--    </div>--}}
+{{--    <div class="chatbox__body">--}}
+{{--        <div class="chatbox__body__message chatbox__body__message--left">--}}
+{{--            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/brad_frost/128.jpg" alt="Picture">--}}
+{{--            <p>Chào bạn, chúng tôi có thể giúp được gì cho bạn ?.</p>--}}
+{{--        </div>--}}
+{{--        <div class="chatbox__body__message chatbox__body__message--right">--}}
+{{--            <img src="https://s3.amazonaws.com/uifaces/faces/twitter/arashmil/128.jpg" alt="Picture">--}}
+{{--            <p>Em muốn hỏi hoa hồng.</p>--}}
+{{--        </div>--}}
+
+{{--    </div>--}}
+{{--    <form class="chatbox__credentials">--}}
+{{--        <div class="form-group">--}}
+{{--            <label for="inputName">Tên của bạn:</label>--}}
+{{--            <input type="text" name="chat_name" class="form-control" id="inputName" required>--}}
+{{--        </div>--}}
+{{--        <div class="form-group">--}}
+{{--            <label for="inputEmail">Email:</label>--}}
+{{--            <input type="email" name="chat_email" class="form-control" id="inputEmail" required>--}}
+{{--        </div>--}}
+{{--        <button type="submit" class="btn btn-success btn-block">Chat ngay</button>--}}
+{{--    </form>--}}
+{{--    <form action="">--}}
+{{--        <textarea class="chatbox__message" placeholder="Đặt câu hỏi cho chúng tôi ngay"></textarea>--}}
+{{--    </form>--}}
+{{--</div>--}}
 @endsection
